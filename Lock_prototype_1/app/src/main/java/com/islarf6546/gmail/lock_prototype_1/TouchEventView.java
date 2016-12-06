@@ -16,7 +16,7 @@ import android.view.View;
 REFERENCE FOR TOUCHEVENTVIEW CODE SNIPPET:: https://www.youtube.com/watch?v=fRtytvw3yvY&t=555s
 */
 
-    
+
 public class TouchEventView extends View {
     private Paint paint = new Paint();
     private Path path = new Path();
