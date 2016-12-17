@@ -1,0 +1,7 @@
+#Tue Dec 06 20:06:27 GMT 2016
+base.0=C\:\\Users\\Islarf\\Documents\\DIT\\Year 4\\FYP\\Development\\Lock-dot-Paint\\Lock_prototype_1\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_77fcf056972876e840e258e771ed62b87ac14ad5
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=C\:\\Users\\Islarf\\Documents\\DIT\\Year 4\\FYP\\Development\\Lock-dot-Paint\\Lock_prototype_1\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_588a466e9a4a565d727d12ed0e215a99dea8e4e0\\classes.dex
+base.1=C\:\\Users\\Islarf\\Documents\\DIT\\Year 4\\FYP\\Development\\Lock-dot-Paint\\Lock_prototype_1\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_588a466e9a4a565d727d12ed0e215a99dea8e4e0
+file.0=C\:\\Users\\Islarf\\Documents\\DIT\\Year 4\\FYP\\Development\\Lock-dot-Paint\\Lock_prototype_1\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_77fcf056972876e840e258e771ed62b87ac14ad5\\classes.dex
