@@ -13,7 +13,6 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         startService(new Intent(this, Lock_Disable.class));
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
