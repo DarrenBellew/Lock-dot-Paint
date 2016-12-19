@@ -9,10 +9,17 @@ import android.widget.Button;
 
 public class MainActivity extends Activity {
 
+    private static boolean active = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        startService(new Intent(this, Lock_Disable.class));
 
+        active=true;
+
+        if(!Lock_Disable.isActive()) {
+            startService(new Intent(this, Lock_Disable.class));
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -20,8 +27,13 @@ public class MainActivity extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
+                active = false;
             }
         });
+    }
+
+    public static boolean isActive()  {
+        return active;
     }
 
 

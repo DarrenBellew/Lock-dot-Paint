@@ -17,11 +17,16 @@ public class Receiver extends BroadcastReceiver {
 
         String action = intent.getAction();
         if(action.equals(Intent.ACTION_SCREEN_OFF))  {
-            System.out.println("|| Screen off ||");
+            if(MainActivity.isActive()) {
+                System.out.println("|| Screen off ||");
 
-            Intent i = new Intent(context, MainActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(i);
+                Intent i = new Intent(context, MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
+            }
+            else  {
+                System.out.println("|| Lock screen already active ||");
+            }
         }
     }
 }

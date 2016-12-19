@@ -14,11 +14,15 @@ import android.widget.Toast;
 
 public class Lock_Disable extends Service {
 
+    static public boolean active = false;
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
+
+
 
 
     @Override
@@ -28,12 +32,26 @@ public class Lock_Disable extends Service {
 
     @Override
     public void onDestroy() {
+        active = false;
+        System.out.println("|| LOCK_DISABLE HAS BEEN DESTROYED ||");
         super.onDestroy();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        active = true;
+
         Toast.makeText(Lock_Disable.this, "Service Started", Toast.LENGTH_SHORT).show();
+
+        IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
+        filter.addAction(Intent.ACTION_BOOT_COMPLETED);
+        Receiver receiver = new Receiver();
+        registerReceiver(receiver, filter);
+
         return super.onStartCommand(intent, flags, startId);
+    }
+
+    static public boolean isActive()  {
+        return active;
     }
 }
