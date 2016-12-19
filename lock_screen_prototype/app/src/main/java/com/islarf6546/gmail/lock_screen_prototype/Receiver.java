@@ -17,7 +17,7 @@ public class Receiver extends BroadcastReceiver {
 
         String action = intent.getAction();
         if(action.equals(Intent.ACTION_SCREEN_OFF))  {
-            if(MainActivity.isActive()) {
+            if(!MainActivity.isActive()) {
                 System.out.println("|| Screen off ||");
 
                 Intent i = new Intent(context, MainActivity.class);
