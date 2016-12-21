@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">lock_screen_settings</string>
+    <string name="title_activity_enter_password_activity">enter_password_activity</string>
 </resources>

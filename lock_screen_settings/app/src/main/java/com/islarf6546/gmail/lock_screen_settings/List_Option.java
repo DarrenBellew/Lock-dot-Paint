@@ -7,5 +7,9 @@ package com.islarf6546.gmail.lock_screen_settings;
 public class List_Option {
 
     String view_name;
+    String imageLink;
+
+
+
 
 }
