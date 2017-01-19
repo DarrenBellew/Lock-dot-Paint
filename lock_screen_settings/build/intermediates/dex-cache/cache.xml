@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
+        <dex dex="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.0.0_3c8e6600dcaa66f4efabb5cd2973a08ad2d28869\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
+        <dex dex="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.0.0_376a67fc8eabcc228f9476ab9811bf077cf7a08d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
+        <dex dex="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.0.0_220f019911b10353362d30842c4814ca790c122f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.0\jars\libs\internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_51d3aec4038ad58064539fb95d8ee47f9c83e92d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
+        <dex dex="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.0.0_d15e2bdab4a736e61f5c8819cb4f4bff9b15a45d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
+        <dex dex="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.0.0_a6fd320c402935a7da1f0e6238325f5d796d74db\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.0\jars\libs\internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
+        <dex dex="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_ab00bcfd736539f1371c649ffd8f7dc0b4377b23\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.0\jars\libs\internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
+        <dex dex="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_4af1dfba57c550aed2f545b53812ac94afb5d391\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.0.0_fa20f0023687a2d42804f56bd66dddd0ce74287a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="26674000177e45447a0326a6ad84612761199a13">
+        <dex dex="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.0.0_ff7cfddbdc9e84d4379cdca904212868eace28af\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
+        <dex dex="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.0.0_b0285b2a8c505f3b00b1e3f5039250051fa2abf0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3637a63ab0f11ed4111f3c14077e4fd28016e2c7">
+        <dex dex="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_71d3802aaa7c41c217a8ce0dc5ca49977e0dbfc9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.0\jars\libs\internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
+        <dex dex="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_54c411cd345f87482daa1e60ed013b6ed21f70a2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.0\jars\libs\internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
+        <dex dex="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_f51793ecde633627a75e54c937987aac1956df3f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Islarf\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.0.0\support-annotations-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a22d2cc94da87b254451fa8ed28afc30b4653773">
+        <dex dex="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.0.0_94f169fbf3d457a3f0be85560cabfba687f9825a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e3728685fc8e81b7ae167aa4f7fc46f805c1504f">
+        <dex dex="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_3c5bcb97575da2a730b3f70f3c584bb64e5f3497\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
+        <dex dex="C:\Users\Islarf\Documents\DIT\Year 4\FYP\Development\Lock-dot-Paint\lock_screen_settings\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.0.0_045cc593c93edcb3956131208d6a080cb0a9ebb6\classes.dex" />
+    </item>
+
+</items>
