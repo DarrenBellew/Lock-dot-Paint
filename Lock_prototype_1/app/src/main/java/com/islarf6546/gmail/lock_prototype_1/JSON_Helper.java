@@ -33,24 +33,20 @@ public class JSON_Helper {
     }
 
     public boolean createFile(JSONObject new_object, String filename, Context ctx) throws IOException, JSONException {
-        try {
-            String text;
-            JSONArray data_temp;
-            data_temp = new JSONArray();
-            data_temp.put(new_object);
 
-            String text = data_temp.toString();
+        String text;
+        JSONArray data_temp;
+        data_temp = new JSONArray();
+        data_temp.put(new_object);
 
-            FileOutputStream fos = ctx.openFileOutput(filename, MODE_PRIVATE);
-            fos.write(text.getBytes());
-            fos.close();
+        text = data_temp.toString();
 
-            Toast.makeText(ctx, "JSON object made", LENGTH_SHORT);
-            return true;
-        }
-        catch (JSONException e)  {
-            e.printStackTrace();
-            return false;
-        }
+        FileOutputStream fos = ctx.openFileOutput(filename, MODE_PRIVATE);
+        fos.write(text.getBytes());
+        fos.close();
+
+        Toast.makeText(ctx, "JSON object made", LENGTH_SHORT);
+        return true;
+
     }
 }
