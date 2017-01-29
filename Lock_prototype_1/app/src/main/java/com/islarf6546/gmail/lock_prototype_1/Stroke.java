@@ -33,21 +33,17 @@ public class Stroke {
     }
 
     public String toString()  {
-        String toretr = "{";
 
-        Coordinate temp;
+        return coordinates.toString();
 
-        for(int i=0; i < coordinates.size(); i++)  {
-            temp = coordinates.get(i);
-            toretr += "X: " + temp.getX() + ", Y: " + temp.getY();
+        /*String toretr = "{";
 
-            if(i != coordinates.size()-2)  {
-                toretr+=", ";
-            }
+        for(Coordinate coordIter : coordinates)  {
+            toretr += "X: " + coordIter.getX() + ", Y: " + coordIter.getY();
         }
 
         toretr+="}";
-        return toretr;
+        return toretr;*/
     }
 
 }
