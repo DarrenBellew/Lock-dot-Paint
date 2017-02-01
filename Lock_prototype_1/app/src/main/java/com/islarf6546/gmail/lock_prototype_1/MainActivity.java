@@ -30,16 +30,6 @@ public class MainActivity extends Activity {
                 }
         );
 
-        Button clr = (Button) findViewById(R.id.clear_button);
-        clr.setOnClickListener(
-                new View.OnClickListener()  {
-                    @Override
-                    public void onClick(View view)  {
-                        d.clear();
-                    }
-                }
-        );
-
         //setContentView(R.layout.activity_main);
 
         //getWindow().addContentView(R.layout.activity_main);

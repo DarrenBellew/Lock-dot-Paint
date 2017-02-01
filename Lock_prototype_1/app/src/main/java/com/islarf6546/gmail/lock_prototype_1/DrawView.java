@@ -26,7 +26,9 @@ public class DrawView extends View {
 
     Coordinate delim = new Coordinate(-1,-1);
 
-    ArrayList<Stroke> strokes = new ArrayList<Stroke>();
+    private ArrayList<Stroke> strokes = new ArrayList<Stroke>();
+    Stroke stroke;
+
 
     boolean clearCanvas = false;
 
@@ -73,16 +75,13 @@ public class DrawView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event)  {
 
-        Stroke stroke = new Stroke();
-
-        Coordinate temp;
-
-        temp = new Coordinate(event.getX(), event.getY());
+        Coordinate temp = new Coordinate(event.getX(), event.getY());
 
         switch(event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                stroke = new Stroke();
                 stroke.addCoordinate(temp);
-                //finger_down = true;
+                finger_down = true;
                 path.moveTo(temp.getX(), temp.getY());
                 return true;
 
@@ -94,6 +93,7 @@ public class DrawView extends View {
             case MotionEvent.ACTION_UP:
                 stroke.addCoordinate(temp);
                 strokes.add(stroke);
+                finger_down = false;
                 break; //do nothing, finger up
 
             default:
@@ -109,12 +109,13 @@ public class DrawView extends View {
     public void displayStrokes()  {
         System.out.println("Stroke size: " + strokes.size());
 
-
-
+        System.out.println("Stroke 1 size: " + strokes.get(0).getAList().size());
 
 
         for(Stroke strokeIter : strokes)  {
-            System.out.println(strokeIter);
+
+            System.out.println(strokeIter.getAList().toString());
+
         }
     }
 

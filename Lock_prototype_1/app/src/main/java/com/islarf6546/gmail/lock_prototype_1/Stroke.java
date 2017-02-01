@@ -15,9 +15,9 @@ public class Stroke {
     public Stroke(){}
 
     public void addCoordinate(Coordinate c)  {
-        if(first != null)  {
-            first = c;
-        }
+        //if(first != null)  {
+        //    first = c;
+        //}
         coordinates.add(c);
     }
 
@@ -32,9 +32,10 @@ public class Stroke {
         return coordinates.get(coordinates.size()-1);
     }
 
-    public String toString()  {
 
-        return coordinates.toString();
+    public ArrayList<Coordinate> getAList()  {
+
+        return coordinates;
 
         /*String toretr = "{";
 
