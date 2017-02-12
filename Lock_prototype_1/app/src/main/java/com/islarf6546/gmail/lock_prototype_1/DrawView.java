@@ -94,7 +94,7 @@ public class DrawView extends View {
                 stroke.addCoordinate(temp);
                 strokes.add(stroke);
                 finger_down = false;
-                break; //do nothing, finger up
+                break;
 
             default:
                 return false;
@@ -109,14 +109,20 @@ public class DrawView extends View {
     public void displayStrokes()  {
         System.out.println("Stroke size: " + strokes.size());
 
-        System.out.println("Stroke 1 size: " + strokes.get(0).getAList().size());
+        System.out.println("Line 1-2 coords: " + strokes.get(0).getLinePair(0));
+        System.out.println("Line 1-2 angle: " + strokes.get(0).getAngle(0));
 
 
-        for(Stroke strokeIter : strokes)  {
+        //System.out.println("angle between (0) and (1): " + strokes.get(0).getAngle(0));
 
+
+        /*for(Stroke strokeIter : strokes)  {
             System.out.println(strokeIter.getAList().toString());
+        }*/
 
-        }
+
+
+
     }
 
     public void clear()  {

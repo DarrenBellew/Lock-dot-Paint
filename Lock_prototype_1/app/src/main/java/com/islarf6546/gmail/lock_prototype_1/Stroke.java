@@ -8,43 +8,65 @@ import java.util.ArrayList;
 
 public class Stroke {
 
-    ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>();
-    Coordinate first = null;
+
+
+    ArrayList<Line> lines = new ArrayList<Line>();
+
+    Coordinate cur = null;
+
 
 
     public Stroke(){}
 
     public void addCoordinate(Coordinate c)  {
-        //if(first != null)  {
-        //    first = c;
-        //}
-        coordinates.add(c);
-    }
-
-    public ArrayList<Coordinate> getCoordinates()  {
-        return coordinates;
-    }
-
-    public Coordinate getFirst()  {
-        return first;
-    }
-    public Coordinate getLast()  {
-        return coordinates.get(coordinates.size()-1);
+        if(cur != null)  {
+            lines.add(new Line(cur, c));
+        }
+        cur = c;
     }
 
 
-    public ArrayList<Coordinate> getAList()  {
+    public ArrayList<Line> getLines()  {
+        return lines;
+    }
 
-        return coordinates;
+    public float getAngle(int value)  {
 
-        /*String toretr = "{";
+        if(value >= 0 && value < lines.size()-1)  {
+            return MyMath.angleOfTwo(lines.get(value), lines.get(value+1));
+        }
+        else  {
+            return -2;
+        }
+    }
 
-        for(Coordinate coordIter : coordinates)  {
-            toretr += "X: " + coordIter.getX() + ", Y: " + coordIter.getY();
+    public Coordinate getCur()  {
+        return cur;
+    }
+    public Line getLast()  {
+        return lines.get(lines.size()-1);
+    }
+
+    public ArrayList<Line> getAList()  {
+        return lines;
+    }
+
+
+
+    @Override
+    public String toString()  {
+        String toRet = "";
+
+        for (int i=0; i<lines.size(); i++)  {
+            toRet += "\n"+lines.get(i).toString();
         }
 
-        toretr+="}";
-        return toretr;*/
+        return toRet;
+    }
+
+    public String getLinePair(int value)  {
+        return "a: " + lines.get(value).toString() + "\nb: " + lines.get(value+1).toString();
+
     }
 
 }
