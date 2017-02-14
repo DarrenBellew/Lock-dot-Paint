@@ -48,7 +48,4 @@ public class MyMath {
         return Math.round(val / rounder) * rounder;
     }
 
-    public static double round(float val, int scale)  {
-        return round((double) val, scale);
-    }
 }

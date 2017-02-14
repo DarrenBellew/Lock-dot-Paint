@@ -9,9 +9,9 @@ public class Coordinate {
     float x;
     float y;
 
-    public Coordinate(double x, double y)  {
-        this.x=MyMath.round(x, -10);
-        this.y=MyMath.round(y, -10);
+    public Coordinate(float x, float y)  {
+        this.x=(float) MyMath.round(x, -10);
+        this.y=(float) MyMath.round(y, -10);
     }
 
     public float getX()  {
