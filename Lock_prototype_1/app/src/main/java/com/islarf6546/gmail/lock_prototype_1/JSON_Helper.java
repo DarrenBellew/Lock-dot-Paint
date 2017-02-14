@@ -27,26 +27,12 @@ public class JSON_Helper {
     FileInputStream fis;
 
 
+
+
     public JSON_Helper()  {
         this.data = new JSONArray();
         this.json_object = new JSONObject();
     }
 
-    public boolean createFile(JSONObject new_object, String filename, Context ctx) throws IOException, JSONException {
 
-        String text;
-        JSONArray data_temp;
-        data_temp = new JSONArray();
-        data_temp.put(new_object);
-
-        text = data_temp.toString();
-
-        FileOutputStream fos = ctx.openFileOutput(filename, MODE_PRIVATE);
-        fos.write(text.getBytes());
-        fos.close();
-
-        Toast.makeText(ctx, "JSON object made", LENGTH_SHORT);
-        return true;
-
-    }
 }

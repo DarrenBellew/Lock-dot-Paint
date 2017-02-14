@@ -6,27 +6,27 @@ package com.islarf6546.gmail.lock_prototype_1;
 
 public class Coordinate {
 
-    float x;
-    float y;
+    int x;
+    int y;
 
-    public Coordinate(float x, float y)  {
-        this.x=(float) MyMath.round(x, -10);
-        this.y=(float) MyMath.round(y, -10);
+    public Coordinate(int x, int y)  {
+        this.x=x;
+        this.y=y;
     }
 
-    public float getX()  {
+    public int getX()  {
         return x;
     }
-    public float getY()  {
+    public int getY()  {
         return y;
     }
 
-    public void setCoords(float x, float y)  {
+    public void setCoords(int x, int y)  {
         this.x = x;
         this.y = y;
     }
 
     public String toString()  {
-        return "||X: " + x + " || Y: " + y + "||";
+        return "("+getX()+","+getY()+")";
     }
 }

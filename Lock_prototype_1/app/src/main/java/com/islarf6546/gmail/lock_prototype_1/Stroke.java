@@ -10,63 +10,39 @@ public class Stroke {
 
 
 
-    ArrayList<Line> lines = new ArrayList<Line>();
+    private Coordinate start;
+    private Coordinate end;
 
-    Coordinate cur = null;
+    public Stroke(Coordinate start, Coordinate end){
+        this.start=start;
+        this.end=end;
+    }
 
-
-
-    public Stroke(){}
-
-    public void addCoordinate(Coordinate c)  {
-        if(cur != null)  {
-            lines.add(new Line(cur, c));
-        }
-        cur = c;
+    public Stroke(Coordinate start)  {
+        this(start, null);
     }
 
 
-    public ArrayList<Line> getLines()  {
-        return lines;
+
+    public void setStart(Coordinate start)  {
+        this.start=start;
     }
 
-    public float getAngle(int value)  {
-
-        if(value >= 0 && value < lines.size()-1)  {
-            return MyMath.angleOfTwo(lines.get(value), lines.get(value+1));
-        }
-        else  {
-            return -2;
-        }
+    public Coordinate getStart()  {
+        return start;
     }
 
-    public Coordinate getCur()  {
-        return cur;
-    }
-    public Line getLast()  {
-        return lines.get(lines.size()-1);
+    public void setEnd(Coordinate end)  {
+        this.end=end;
     }
 
-    public ArrayList<Line> getAList()  {
-        return lines;
+    public Coordinate getEnd()  {
+        return end;
     }
-
 
 
     @Override
     public String toString()  {
-        String toRet = "";
-
-        for (int i=0; i<lines.size(); i++)  {
-            toRet += "\n"+lines.get(i).toString();
-        }
-
-        return toRet;
+        return "Start: " + getStart() + " || End: " + getEnd();
     }
-
-    public String getLinePair(int value)  {
-        return "a: " + lines.get(value).toString() + "\nb: " + lines.get(value+1).toString();
-
-    }
-
 }

@@ -24,10 +24,8 @@ public class DrawView extends View {
     private Paint paint = new Paint();
     private Path path = new Path();
 
-    Coordinate delim = new Coordinate(-1,-1);
-
-    private ArrayList<Stroke> strokes = new ArrayList<Stroke>();
-    Stroke stroke;
+    ArrayList<Stroke> strokes = new ArrayList<Stroke>();
+    Stroke curStroke = null;
 
 
     boolean clearCanvas = false;
@@ -75,24 +73,24 @@ public class DrawView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event)  {
 
-        Coordinate temp = new Coordinate(event.getX(), event.getY());
+        Coordinate temp = new Coordinate((int) event.getX(), (int) event.getY());
 
         switch(event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                stroke = new Stroke();
-                stroke.addCoordinate(temp);
+                curStroke = new Stroke(temp);
                 finger_down = true;
                 path.moveTo(temp.getX(), temp.getY());
                 return true;
 
             case MotionEvent.ACTION_MOVE:
-                stroke.addCoordinate(temp);
                 finger_down = true;
                 path.lineTo(temp.getX(), temp.getY());
                 break;
             case MotionEvent.ACTION_UP:
-                stroke.addCoordinate(temp);
-                strokes.add(stroke);
+                curStroke.setEnd(temp);
+                strokes.add(curStroke);
+                curStroke = null;
+
                 finger_down = false;
                 break;
 
@@ -101,32 +99,16 @@ public class DrawView extends View {
         }
 
 
+
         //schedule a repaint
         invalidate();
         return true;
     }
 
     public void displayStrokes()  {
-        System.out.println("Stroke size: " + strokes.size());
-
-        System.out.println("Line 1-2 coords: " + strokes.get(0).getLinePair(0));
-        System.out.println("Line 1-2 angle: " + strokes.get(0).getAngle(0));
-
-
-        //System.out.println("angle between (0) and (1): " + strokes.get(0).getAngle(0));
-
-
-        /*for(Stroke strokeIter : strokes)  {
-            System.out.println(strokeIter.getAList().toString());
-        }*/
-
-
-
-
+        for(Stroke i : strokes)  {
+            System.out.println(i.toString()+"\n");
+        }
     }
 
-    public void clear()  {
-        strokes = new ArrayList<Stroke>();
-        clearCanvas = true;
-    }
 }
