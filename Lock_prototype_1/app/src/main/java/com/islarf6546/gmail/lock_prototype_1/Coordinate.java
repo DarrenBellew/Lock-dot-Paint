@@ -10,8 +10,8 @@ public class Coordinate {
     int y;
 
     public Coordinate(int x, int y)  {
-        this.x=x;
-        this.y=y;
+        this.x=(int) GeometryMath.round(x, 100);
+        this.y=(int) GeometryMath.round(y, 100);
     }
 
     public int getX()  {
