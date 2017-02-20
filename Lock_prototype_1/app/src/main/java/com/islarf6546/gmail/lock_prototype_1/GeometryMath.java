@@ -45,6 +45,9 @@ public class GeometryMath {
                 }
             }
         }
+        else  {
+            return false;
+        }
 
         return true;
     }
