@@ -10,8 +10,15 @@ public class Coordinate {
     int y;
 
     public Coordinate(int x, int y)  {
-        this.x=(int) GeometryMath.round(x, 100);
-        this.y=(int) GeometryMath.round(y, 100);
+        if(x < 0)  {
+            x = 0;
+        }
+        if(y < 0)  {
+            y = 0;
+        }
+
+        this.x=x;
+        this.y=y;
     }
 
     public int getX()  {
@@ -24,6 +31,11 @@ public class Coordinate {
     public void setCoords(int x, int y)  {
         this.x = x;
         this.y = y;
+    }
+
+    public void roundCoords()  {
+        x = (int) GeometryMath.round(x,100);
+        y = (int) GeometryMath.round(y,100);
     }
 
     public String toString()  {
