@@ -37,4 +37,12 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
+    <Button
+        android:text="Create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/drawArea"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/create_button" />
+
 </RelativeLayout>

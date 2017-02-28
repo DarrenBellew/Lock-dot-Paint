@@ -25,7 +25,9 @@ import java.io.Writer;
 
 import static android.content.Context.MODE_PRIVATE;
 import static android.content.Context.POWER_SERVICE;
+import static android.os.ParcelFileDescriptor.MODE_READ_ONLY;
 import static android.os.ParcelFileDescriptor.MODE_WORLD_READABLE;
+import static android.os.ParcelFileDescriptor.MODE_WRITE_ONLY;
 import static android.widget.Toast.LENGTH_SHORT;
 
 /**
@@ -49,7 +51,33 @@ public class JSON_Helper {
     public JSONObject loadJSON(Context ctx) throws JSONException {
 
 
+        JSONObject json = null;
 
+        //having to read from LOCAL storage (Not using external storage incase the user does not have an SD card)
+        try  {
+            FileInputStream fin = ctx.openFileInput(filename);
+
+            int c;
+            String temp = "";
+            while((c = fin.read()) != -1)  {
+                temp = temp+Character.toString((char)c);
+            }
+            fin.close();
+
+            json = new JSONObject(temp);
+        }
+        catch(FileNotFoundException fnf)  {
+            AndroidHelper.makeToast(ctx, "File Not Found Exception", false);
+            fnf.printStackTrace();
+        }
+        catch(IOException ioe)  {
+            AndroidHelper.makeToast(ctx, "IOException", false);
+            ioe.printStackTrace();
+        }
+
+        return json;
+
+        /*
         String json="";
         try  {
             InputStream is = ctx.openFileInput(filename);
@@ -74,11 +102,29 @@ public class JSON_Helper {
             ioe.printStackTrace();
         }
 
-        return new JSONObject(json);
+        return new JSONObject(json);*/
     }
 
     public boolean writeJSONToAsset(JSONObject json_data, Context ctx)  {
 
+        try {
+            FileOutputStream fos = ctx.openFileOutput(filename, MODE_WRITE_ONLY);
+
+            String str = json_data.toString();
+            fos.write(str.getBytes());
+            fos.close();
+
+        }
+        catch(FileNotFoundException fnf)  {
+            AndroidHelper.makeToast(ctx, "File Not Found Exception", false);
+            fnf.printStackTrace();
+        }
+        catch(IOException ioe)  {
+            AndroidHelper.makeToast(ctx, "IOException", false);
+            ioe.printStackTrace();
+        }
+
+        /*
         try  {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(ctx.openFileOutput(filename, ctx.MODE_PRIVATE));
             outputStreamWriter.write(json_data.toString());
@@ -87,7 +133,7 @@ public class JSON_Helper {
         catch(IOException e)  {
             e.printStackTrace();
         }
-
+        */
         return false;
     }
 }

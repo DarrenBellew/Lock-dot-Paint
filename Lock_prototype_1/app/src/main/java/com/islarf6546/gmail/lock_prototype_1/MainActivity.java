@@ -8,6 +8,9 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MainActivity extends Activity {
 
     @Override
@@ -15,6 +18,26 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        JSON_Helper jsonObj = new JSON_Helper("password.json",this);
+        JSONObject simplevalue;
+        try {
+            //simplevalue.put("password", "helloWorld");
+            simplevalue = jsonObj.loadJSON(this);
+            AndroidHelper.makeToast(this, simplevalue.toString(), false);
+            System.out.println(simplevalue);
+            jsonObj.writeJSONToAsset(simplevalue, this);
+
+
+        }
+        catch(JSONException jsone)  {
+            AndroidHelper.makeToast(this, "JSON Exception", false);
+            jsone.printStackTrace();
+        }
+
+
+
+        //Gets display (screen) size to calculate an area of freedom
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         final int height = displayMetrics.heightPixels/10;
@@ -34,6 +57,16 @@ public class MainActivity extends Activity {
                         System.out.println("Freedom: " + freedom);
 
                         d.displayStrokes(freedom);
+                    }
+                }
+        );
+
+        Button create = (Button) findViewById(R.id.create_button);
+        create.setOnClickListener(
+                new View.OnClickListener()  {
+                    @Override
+                    public void onClick(View view)  {
+                        d.createPassword();
                     }
                 }
         );

@@ -105,7 +105,6 @@ public class GeometryMath {
                 y = str.getEnd().getY();
             }
         }
-        System.out.println("x: " + x + " || y: " + y);
         toRet = new Coordinate(x,y);
         return toRet;
     }
