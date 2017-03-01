@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
                     public void onClick(View view) {
                         System.out.println("Freedom: " + freedom);
 
-                        d.displayStrokes(freedom);
+                        d.displayStrokes(freedom, getBaseContext());
                     }
                 }
         );
@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
                 new View.OnClickListener()  {
                     @Override
                     public void onClick(View view)  {
-                        d.createPassword();
+                        d.createPassword(getBaseContext());
                     }
                 }
         );

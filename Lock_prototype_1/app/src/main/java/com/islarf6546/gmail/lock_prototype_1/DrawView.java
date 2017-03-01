@@ -99,8 +99,6 @@ public class DrawView extends View {
 
         Coordinate temp = new Coordinate((int) event.getX(), (int) event.getY());
 
-
-
         switch(event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 path.moveTo(temp.getX(), temp.getY());
@@ -132,13 +130,13 @@ public class DrawView extends View {
         return true;
     }
 
-    public void displayStrokes(int freedom)  {
+    public void displayStrokes(int freedom, Context ctx2)  {
         strokes = GeometryMath.translateShapeToOrigin(strokes);
-        PasswordHelper.comparePw(strokes, freedom);
+        PasswordHelper.comparePw(strokes, freedom, ctx2);
     }
 
-    public void createPassword()  {
-
+    public void createPassword(Context ctx2)  {
+        PasswordHelper.storeNew(strokes,ctx2);
     }
 
 }
