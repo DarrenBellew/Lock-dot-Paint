@@ -36,13 +36,9 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 public class JSON_Helper {
 
-
-    Context ctx;
     String filename;
 
-
-    public JSON_Helper(String filename, Context ctx) {
-        this.ctx = ctx;
+    public JSON_Helper(String filename) {
         this.filename = filename;
     }
 
@@ -105,7 +101,7 @@ public class JSON_Helper {
         return new JSONObject(json);*/
     }
 
-    public boolean writeJSONToAsset(JSONObject json_data, Context ctx)  {
+    public boolean writeJSON(JSONObject json_data, Context ctx)  {
 
         try {
             FileOutputStream fos = ctx.openFileOutput(filename, MODE_WRITE_ONLY);
@@ -124,16 +120,6 @@ public class JSON_Helper {
             ioe.printStackTrace();
         }
 
-        /*
-        try  {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(ctx.openFileOutput(filename, ctx.MODE_PRIVATE));
-            outputStreamWriter.write(json_data.toString());
-            outputStreamWriter.close();
-        }
-        catch(IOException e)  {
-            e.printStackTrace();
-        }
-        */
         return false;
     }
 }

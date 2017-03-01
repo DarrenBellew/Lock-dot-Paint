@@ -133,26 +133,8 @@ public class DrawView extends View {
     }
 
     public void displayStrokes(int freedom)  {
-
         strokes = GeometryMath.translateShapeToOrigin(strokes);
-        System.out.println("INPUT: ");
-        for(Stroke i : strokes)  {
-            System.out.println(i.toString()+"\n");
-        }
-
-        System.out.println("SOLUTION: ");
-        for(Stroke i : pwStrokes)  {
-            System.out.println(i.toString()+"\n");
-        }
-
-        boolean match = GeometryMath.isCorrect(strokes, pwStrokes, freedom);
-        if(match)  {
-            System.out.println("PHONE UNLOCKED");
-        }
-        else  {
-            System.out.println("ACCESS DENIED");
-        }
-
+        PasswordHelper.comparePw(strokes, freedom);
     }
 
     public void createPassword()  {

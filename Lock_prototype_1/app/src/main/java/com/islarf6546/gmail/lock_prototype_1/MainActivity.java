@@ -19,14 +19,14 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
 
-        JSON_Helper jsonObj = new JSON_Helper("password.json",this);
-        JSONObject simplevalue;
+        JSON_Helper jsonObj = new JSON_Helper("password.json");
+        JSONObject simplevalue = new JSONObject();
         try {
             //simplevalue.put("password", "helloWorld");
             simplevalue = jsonObj.loadJSON(this);
             AndroidHelper.makeToast(this, simplevalue.toString(), false);
             System.out.println(simplevalue);
-            jsonObj.writeJSONToAsset(simplevalue, this);
+            jsonObj.writeJSON(simplevalue, this);
 
 
         }

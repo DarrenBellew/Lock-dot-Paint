@@ -11,9 +11,9 @@ import android.widget.Toast;
 public class AndroidHelper {
 
 
-    public static void makeToast(Context ctx, String text, boolean length)  {
+    public static void makeToast(Context ctx, String text, boolean length_long)  {
 
-        if(length)  {
+        if(length_long)  {
             Toast.makeText(ctx, text, Toast.LENGTH_LONG).show();
         }
         else  {
