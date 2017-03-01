@@ -38,12 +38,9 @@ public class DrawView extends View {
     Context ctx;
 
     ArrayList<Stroke> pwStrokes = null;
-
-
     boolean clearCanvas = false;
 
-    private boolean finger_down = false;
-
+    Canvas storeCanv;
 
     public DrawView(Context ctx) {
         super(ctx);
@@ -72,13 +69,15 @@ public class DrawView extends View {
 
     @Override
     protected void onDraw(Canvas canvas)  {
-        /*if(clearCanvas == true)  {
-            canvas.drawColor(Color.WHITE, PorterDuff.Mode.CLEAR);
-            path.reset();
-            clearCanvas = false;
 
-            this.invalidate();
-        }*/
+        if(strokes.isEmpty())  {
+            canvas.save();
+        }
+        else if(clearCanvas == true)  {
+            canvas.restore();
+            strokes = new ArrayList<>();
+            clearCanvas = false;
+        }
         canvas.drawPath(path, paint);
     }
 
@@ -104,11 +103,9 @@ public class DrawView extends View {
                 path.moveTo(temp.getX(), temp.getY());
                 temp.roundCoords();
                 curStroke = new Stroke(temp);
-                finger_down = true;
                 return true;
 
             case MotionEvent.ACTION_MOVE:
-                finger_down = true;
                 path.lineTo(temp.getX(), temp.getY());
                 break;
             case MotionEvent.ACTION_UP:
@@ -116,7 +113,6 @@ public class DrawView extends View {
                 curStroke.setEnd(temp);
                 strokes.add(curStroke);
                 curStroke = null;
-                finger_down = false;
                 break;
 
             default:
@@ -137,6 +133,10 @@ public class DrawView extends View {
 
     public void createPassword(Context ctx2)  {
         PasswordHelper.storeNew(strokes,ctx2);
+    }
+
+    public void clearCanvas()  {
+        clearCanvas = true;
     }
 
 }

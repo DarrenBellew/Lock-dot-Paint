@@ -70,6 +70,16 @@ public class MainActivity extends Activity {
                     }
                 }
         );
+
+        Button clear = (Button) findViewById(R.id.clear_button);
+        clear.setOnClickListener(
+                new View.OnClickListener()  {
+                    @Override
+                    public void onClick(View view)  {
+                        d.clearCanvas();
+                    }
+                }
+        );
     }
 
     @Override
