@@ -36,6 +36,12 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 public class JSON_Helper {
 
+    /*
+        JSONHelper class to interact with the JSON file.
+     */
+
+
+
     String filename;
 
     public JSON_Helper(String filename) {
@@ -72,33 +78,6 @@ public class JSON_Helper {
         }
 
         return json;
-
-        /*
-        String json="";
-        try  {
-            InputStream is = ctx.openFileInput(filename);
-
-            if(is!=null)  {
-                InputStreamReader inputStreamReader = new InputStreamReader(is);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
-                StringBuilder stringBuilder = new StringBuilder();
-                while((receiveString = bufferedReader.readLine()) != null)  {
-                    stringBuilder.append(receiveString);
-                }
-                is.close();
-                json = stringBuilder.toString();
-
-            }
-        }
-        catch(FileNotFoundException fnf)  {
-            fnf.printStackTrace();
-        }
-        catch(IOException ioe)  {
-            ioe.printStackTrace();
-        }
-
-        return new JSONObject(json);*/
     }
 
     public boolean writeJSON(JSONObject json_data, Context ctx)  {

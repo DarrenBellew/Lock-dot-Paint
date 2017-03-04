@@ -19,6 +19,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
 
+        //TESTING
         JSON_Helper jsonObj = new JSON_Helper("password.json");
         JSONObject simplevalue = new JSONObject();
         try {
@@ -34,7 +35,7 @@ public class MainActivity extends Activity {
             AndroidHelper.makeToast(this, "JSON Exception", false);
             jsone.printStackTrace();
         }
-
+        //END TESTING
 
 
         //Gets display (screen) size to calculate an area of freedom
@@ -44,11 +45,10 @@ public class MainActivity extends Activity {
         final int width = displayMetrics.widthPixels/10;
         final int freedom = (int) (GeometryMath.round((double) ((height < width) ? height : width), 10) * 1.5);
 
-
-
+        //initialise draw area
         final DrawView d = (DrawView) findViewById(R.id.drawArea);
 
-
+        //initialise buttons
         Button sub = (Button) findViewById(R.id.submit_button);
         sub.setOnClickListener(
                 new View.OnClickListener() {
@@ -71,6 +71,7 @@ public class MainActivity extends Activity {
                 }
         );
 
+        //TEMPORARY
         Button clear = (Button) findViewById(R.id.clear_button);
         clear.setOnClickListener(
                 new View.OnClickListener()  {

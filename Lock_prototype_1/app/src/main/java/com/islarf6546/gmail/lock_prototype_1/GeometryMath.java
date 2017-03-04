@@ -15,23 +15,9 @@ import static java.security.AccessController.getContext;
 
 public class GeometryMath {
 
-
-    public static void CompareAccuracy(Coordinate source, Coordinate input)  {
-
-    }
-
-    public static void TranslateToZero(ArrayList<Stroke> str)  {
-
-    }
-
-    public static int closestToOrigin(ArrayList<Stroke> str, boolean axis)  {
-        //axis: true = x, false = y.
-        int toRet = 0;
-
-
-
-        return toRet;
-    }
+    /*
+        Custom MATH class to execute math functions
+     */
 
     public static long round(double n, int v)  {
         return Math.round(n/v) * v;

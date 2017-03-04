@@ -42,6 +42,7 @@ public class DrawView extends View {
 
     Canvas storeCanv;
 
+    //SETUP CODE
     public DrawView(Context ctx) {
         super(ctx);
         init(null,0, ctx);
@@ -66,21 +67,18 @@ public class DrawView extends View {
         paint.setStrokeWidth(5f);
 
     }
+    //END SETUP CODE
 
+
+
+    //onDraw. clear code does not work yet.
     @Override
     protected void onDraw(Canvas canvas)  {
-
-        if(strokes.isEmpty())  {
-            canvas.save();
-        }
-        else if(clearCanvas == true)  {
-            canvas.restore();
-            strokes = new ArrayList<>();
-            clearCanvas = false;
-        }
         canvas.drawPath(path, paint);
     }
 
+
+    //Executes on touching
     @Override
     public boolean onTouchEvent(MotionEvent event)  {
 
@@ -94,7 +92,6 @@ public class DrawView extends View {
             pwStrokes = GeometryMath.translateShapeToOrigin(pwStrokes);
             curStroke = null;
         }
-
 
         Coordinate temp = new Coordinate((int) event.getX(), (int) event.getY());
 
@@ -132,11 +129,16 @@ public class DrawView extends View {
     }
 
     public void createPassword(Context ctx2)  {
+        strokes = GeometryMath.translateShapeToOrigin(strokes);
         PasswordHelper.storeNew(strokes,ctx2);
     }
 
     public void clearCanvas()  {
-        clearCanvas = true;
+        path.reset();
+        System.out.println(strokes);
+        strokes = new ArrayList<>();
+
+        invalidate();
     }
 
 }

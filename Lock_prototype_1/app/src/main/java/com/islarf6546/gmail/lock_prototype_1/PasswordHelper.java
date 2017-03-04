@@ -14,6 +14,11 @@ import java.util.ArrayList;
 
 public class PasswordHelper {
 
+    /*
+        This class is just a helper class with a collection of static methods to store new and compare passwords
+     */
+
+
     final static private String filename = "password.json";
     final static private String passwordTag = "password";
     final static private String lengthTag = "length";

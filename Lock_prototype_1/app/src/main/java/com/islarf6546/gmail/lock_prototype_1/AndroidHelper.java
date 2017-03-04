@@ -9,8 +9,10 @@ import android.widget.Toast;
  */
 
 public class AndroidHelper {
-
-
+    /*
+        Just a basic class to allow me to make a toast in an easier fashion.
+        And also allow it to perform other helpful android functions if necessary.
+    */
     public static void makeToast(Context ctx, String text, boolean length_long)  {
 
         if(length_long)  {
