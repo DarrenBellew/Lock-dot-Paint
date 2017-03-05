@@ -18,8 +18,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:id="@+id/drawArea"
-        android:layout_below="@+id/submit_button"
-        android:background="@android:color/white"/>
+        android:background="@android:color/white"
+        android:layout_below="@+id/clear_button" />
 
     <Button
         android:layout_width="wrap_content"
@@ -27,7 +27,8 @@
         android:text="@string/Submit_Button"
         android:id="@+id/submit_button"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:visibility="gone"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -41,8 +42,9 @@
         android:text="Create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/drawArea"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/create_button" />
+        android:id="@+id/create_button"
+        android:visibility="gone"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/submit_button" />
 
 </RelativeLayout>

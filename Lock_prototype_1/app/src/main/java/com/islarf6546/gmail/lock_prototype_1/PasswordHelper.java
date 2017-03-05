@@ -79,13 +79,10 @@ public class PasswordHelper {
 
         boolean match = GeometryMath.isCorrect(storepw, input, freedom);
         if(match)  {
-            System.out.println("PHONE UNLOCKED");
+            return true;
         }
         else  {
-            System.out.println("ACCESS DENIED");
+            return false;
         }
-
-        boolean toRet = false;
-        return toRet;
     }
 }

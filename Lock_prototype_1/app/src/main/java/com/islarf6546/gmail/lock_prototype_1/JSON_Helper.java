@@ -69,11 +69,9 @@ public class JSON_Helper {
             json = new JSONObject(temp);
         }
         catch(FileNotFoundException fnf)  {
-            AndroidHelper.makeToast(ctx, "File Not Found Exception", false);
             fnf.printStackTrace();
         }
         catch(IOException ioe)  {
-            AndroidHelper.makeToast(ctx, "IOException", false);
             ioe.printStackTrace();
         }
 
@@ -91,11 +89,9 @@ public class JSON_Helper {
 
         }
         catch(FileNotFoundException fnf)  {
-            AndroidHelper.makeToast(ctx, "File Not Found Exception", false);
             fnf.printStackTrace();
         }
         catch(IOException ioe)  {
-            AndroidHelper.makeToast(ctx, "IOException", false);
             ioe.printStackTrace();
         }
 

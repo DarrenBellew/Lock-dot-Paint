@@ -123,9 +123,9 @@ public class DrawView extends View {
         return true;
     }
 
-    public void displayStrokes(int freedom, Context ctx2)  {
+    public boolean displayStrokes(int freedom, Context ctx2)  {
         strokes = GeometryMath.translateShapeToOrigin(strokes);
-        PasswordHelper.comparePw(strokes, freedom, ctx2);
+        return PasswordHelper.comparePw(strokes, freedom, ctx2);
     }
 
     public void createPassword(Context ctx2)  {
