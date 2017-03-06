@@ -15,22 +15,20 @@ import org.json.JSONObject;
 
 public class MainDrawActivity extends Activity {
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent i = getIntent();
+        final Intent i = getIntent();
 
 
 
         //TESTING
         JSON_Helper jsonObj = new JSON_Helper("password.json");
-        JSONObject simplevalue = new JSONObject();
+        JSONObject simplevalue = null;
         try {
             //simplevalue.put("password", "helloWorld");
-            simplevalue = jsonObj.loadJSON(this);
+            simplevalue =  jsonObj.loadJSON(this);
             AndroidHelper.makeToast(MainDrawActivity.super.getApplicationContext(),simplevalue.toString(),false);
             System.out.println(simplevalue);
             jsonObj.writeJSON(simplevalue, this);
@@ -63,14 +61,34 @@ public class MainDrawActivity extends Activity {
             create.setOnClickListener(
                     new View.OnClickListener()  {
                         @Override
-                        public void onClick(View view)  {
+                        public void onClick(View view) {
                             d.createPassword(getBaseContext());
                             create.setVisibility(View.GONE);
                             killActivity();
                         }
-
                     }
             );
+        }
+        else if (i.getBooleanExtra(getString(R.string.change_check_pw), false)) {
+            sub.setVisibility(View.GONE);
+            create.setVisibility(View.VISIBLE);
+            create.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent returnIntent = new Intent();
+                            boolean isCorrect = d.comparePw(MainDrawActivity.this, freedom);
+                            if(!isCorrect)  {
+                                AndroidHelper.makeToast(MainDrawActivity.this, "Incorrect, try again", false);
+                            }
+                            else {
+                                returnIntent.putExtra(getString(R.string.change_check_pw), true);
+                                setResult(Activity.RESULT_OK, i);
+                            }
+                        }
+                    }
+            );
+
         }
         else  {
             create.setVisibility(View.GONE);

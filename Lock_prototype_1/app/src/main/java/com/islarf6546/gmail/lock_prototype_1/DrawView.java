@@ -133,6 +133,11 @@ public class DrawView extends View {
         PasswordHelper.storeNew(strokes,ctx2);
     }
 
+    public boolean comparePw(Context ctx2, int freedom)  {
+        strokes = GeometryMath.translateShapeToOrigin(strokes);
+        return PasswordHelper.comparePw(strokes, freedom, ctx2);
+    }
+
     public void clearCanvas()  {
         path.reset();
         System.out.println(strokes);

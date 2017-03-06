@@ -34,9 +34,22 @@ public class AppSettingsActivity extends Activity {
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
 
-/*                        switch(position)  {
+                        switch(position)  {
+                            case(0):
+                                //new password
 
-                        }*/
+                                //start maindraw
+                                //ask for password
+                                //have submit send an intent back
+                                //if intent back is true, ask for create new PW
+                                Intent i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
+                                i.putExtra(AppSettingsActivity.this.getString(R.string.change_check_pw), true);
+                                startActivityForResult(i, 1);
+
+                        }
+
+
+
                         Intent i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
                         i.putExtra(getString(R.string.i_newPw), true);
                         AppSettingsActivity.this.startActivity(i);
@@ -48,5 +61,16 @@ public class AppSettingsActivity extends Activity {
 
                     }
                 });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)  {
+        if(requestCode == 1)  {
+            if(resultCode == Activity.RESULT_OK)  {
+                boolean result =  data.getBooleanExtra(this.getString(R.string.change_check_pw), false);
+
+                AndroidHelper.makeToast(this, "Password created", false);
+            }
+        }
     }
 }

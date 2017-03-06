@@ -18,7 +18,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         //TESTING
         JSON_Helper jsonObj = new JSON_Helper("password.json");
         JSONObject simplevalue = new JSONObject();
