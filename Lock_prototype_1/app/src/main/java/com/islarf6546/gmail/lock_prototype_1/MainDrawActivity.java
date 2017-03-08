@@ -55,35 +55,38 @@ public class MainDrawActivity extends Activity {
         final Button sub = (Button) findViewById(R.id.submit_button);
         final Button create = (Button) findViewById(R.id.create_button);
 
-        if(i.getBooleanExtra(getString(R.string.i_newPw), false)) {
+        if(i.getBooleanExtra(getString(R.string.change_pw), false)) {
             sub.setVisibility(View.GONE);
             create.setVisibility(View.VISIBLE);
             create.setOnClickListener(
                     new View.OnClickListener()  {
                         @Override
                         public void onClick(View view) {
-                            d.createPassword(getBaseContext());
-                            create.setVisibility(View.GONE);
+                            d.createPassword(MainDrawActivity.this);
+                            AndroidHelper.makeToast(MainDrawActivity.this, "Password created", false);
                             killActivity();
                         }
                     }
             );
         }
-        else if (i.getBooleanExtra(getString(R.string.change_check_pw), false)) {
-            sub.setVisibility(View.GONE);
-            create.setVisibility(View.VISIBLE);
-            create.setOnClickListener(
+        else if (i.getBooleanExtra(getString(R.string.change_pw_check), false)) {
+            sub.setVisibility(View.VISIBLE);
+            AndroidHelper.makeToast(MainDrawActivity.this, "Enter current password", false);
+            sub.setOnClickListener(
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
                             Intent returnIntent = new Intent();
                             boolean isCorrect = d.comparePw(MainDrawActivity.this, freedom);
                             if(!isCorrect)  {
                                 AndroidHelper.makeToast(MainDrawActivity.this, "Incorrect, try again", false);
                             }
                             else {
-                                returnIntent.putExtra(getString(R.string.change_check_pw), true);
+                                AndroidHelper.makeToast(MainDrawActivity.this, "Correct", false);
+                                returnIntent.putExtra(getString(R.string.change_pw_check), true);
                                 setResult(Activity.RESULT_OK, i);
+                                killActivity();
                             }
                         }
                     }
@@ -98,8 +101,8 @@ public class MainDrawActivity extends Activity {
                         @Override
                         public void onClick(View view) {
                             if(d.displayStrokes(freedom, getBaseContext()))  {
-                                sub.setVisibility(View.GONE);
-                                killActivity();
+                                AndroidHelper.makeToast(MainDrawActivity.this,"CORRECT", false);
+                                //killActivity();
                             }
                             else  {
                                 AndroidHelper.makeToast(MainDrawActivity.super.getApplicationContext(),"try again",false);
@@ -109,7 +112,6 @@ public class MainDrawActivity extends Activity {
             );
 
         }
-        i.removeExtra(getString(R.string.i_newPw));
         Button clear = (Button) findViewById(R.id.clear_button);
         clear.setOnClickListener(
                 new View.OnClickListener() {

@@ -4,9 +4,10 @@
     <string name="clear">Clear</string>
 
     <string name="i_newPw">true</string>
-    <string name="setting_NewPW">New Password</string>
     <string name="enable_Lockscreen">Enable</string>
     <string name="disable_Lockscreen">Disable</string>
 
-    <string name="change_check_pw">true</string>
+    <string name="change_pw_check">New Password</string>
+    <string name="change_pw_confirm">true</string>
+    <string name="change_pw">true</string>
 </resources>

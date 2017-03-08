@@ -12,7 +12,7 @@ public class SettingsHandler {
 
     public static String[] getOptions(Context ctx)  {
         options = new String[]  {
-                ctx.getString(R.string.setting_NewPW),
+                ctx.getString(R.string.change_pw_check),
                 ctx.getString(R.string.enable_Lockscreen)
         };
 

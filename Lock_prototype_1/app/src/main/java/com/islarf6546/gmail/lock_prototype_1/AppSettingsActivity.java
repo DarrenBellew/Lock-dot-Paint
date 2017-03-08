@@ -18,7 +18,7 @@ public class AppSettingsActivity extends Activity {
         setContentView(R.layout.activity_app_settings);
 
         String[] settings = {
-                "New Password", "enable/disable lockscreen"
+                "New Password", "enable/disable lockscreen", "Test Password", "CREATE Password"
         };
 
         ListAdapter theAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
@@ -33,7 +33,7 @@ public class AppSettingsActivity extends Activity {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-
+                        Intent i;
                         switch(position)  {
                             case(0):
                                 //new password
@@ -42,22 +42,21 @@ public class AppSettingsActivity extends Activity {
                                 //ask for password
                                 //have submit send an intent back
                                 //if intent back is true, ask for create new PW
-                                Intent i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
-                                i.putExtra(AppSettingsActivity.this.getString(R.string.change_check_pw), true);
-                                startActivityForResult(i, 1);
-
+                                i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
+                                //i.putExtra(AppSettingsActivity.this.getString(R.string.change_pw_check), true);
+                                i.putExtra(AppSettingsActivity.this.getString(R.string.change_pw_check), true);
+                                AppSettingsActivity.this.startActivityForResult(i, 1);
+                                break;
+                            case(2):
+                                i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
+                                AppSettingsActivity.this.startActivity(i);
+                                break;
+                            case(3):
+                                i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
+                                i.putExtra(AppSettingsActivity.this.getString(R.string.change_pw), true);
+                                AppSettingsActivity.this.startActivity(i);
+                                break;
                         }
-
-
-
-                        Intent i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
-                        i.putExtra(getString(R.string.i_newPw), true);
-                        AppSettingsActivity.this.startActivity(i);
-
-
-                        String settingPicked = "Selected: " +
-                            String.valueOf(adapterView.getItemAtPosition(position));
-                        AndroidHelper.makeToast(AppSettingsActivity.this, settingPicked, false);
 
                     }
                 });
@@ -65,12 +64,20 @@ public class AppSettingsActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)  {
+
+        System.out.println("RESULT");
         if(requestCode == 1)  {
             if(resultCode == Activity.RESULT_OK)  {
-                boolean result =  data.getBooleanExtra(this.getString(R.string.change_check_pw), false);
-
-                AndroidHelper.makeToast(this, "Password created", false);
+                boolean result =  data.getBooleanExtra(this.getString(R.string.change_pw_check), false);
+                if(result)  {
+                    Intent i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
+                    i.putExtra(AppSettingsActivity.this.getString(R.string.change_pw), true);
+                    AppSettingsActivity.this.startActivity(i);
+                }
             }
+        }
+        else  {
+            System.out.println("ERROR MAYBE -> REQUEST CODE: " + requestCode);
         }
     }
 }
