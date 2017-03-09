@@ -82,16 +82,7 @@ public class DrawView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event)  {
 
-        if(pwStrokes == null)  {
-            pwStrokes = new ArrayList<>();
-            Coordinate p1 = new Coordinate(200,400);
-            Coordinate p2 = new Coordinate(400,300);
 
-            curStroke = new Stroke(p1, p2);
-            pwStrokes.add(curStroke);
-            pwStrokes = GeometryMath.translateShapeToOrigin(pwStrokes);
-            curStroke = null;
-        }
 
         Coordinate temp = new Coordinate((int) event.getX(), (int) event.getY());
 
@@ -116,16 +107,14 @@ public class DrawView extends View {
                 return false;
         }
 
-
-
         //schedule a repaint
         invalidate();
         return true;
     }
 
-    public boolean displayStrokes(int freedom, Context ctx2)  {
-        //strokes = GeometryMath.translateShapeToOrigin(strokes);
-        return PasswordHelper.comparePw(strokes, freedom, ctx2);
+    public void displayStrokes(int freedom, Context ctx2)  {
+        strokes = GeometryMath.translateShapeToOrigin(strokes);
+        System.out.println(strokes);
     }
 
     public void createPassword(Context ctx2)  {
@@ -133,7 +122,7 @@ public class DrawView extends View {
         PasswordHelper.storeNew(strokes,ctx2);
     }
 
-    public boolean comparePw(Context ctx2, int freedom)  {
+    public boolean comparePw(int freedom, Context ctx2)  {
         strokes = GeometryMath.translateShapeToOrigin(strokes);
         return PasswordHelper.comparePw(strokes, freedom, ctx2);
     }

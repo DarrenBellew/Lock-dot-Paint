@@ -56,8 +56,8 @@ public class MainDrawActivity extends Activity {
         final Button create = (Button) findViewById(R.id.create_button);
 
         if(i.getBooleanExtra(getString(R.string.change_pw), false)) {
-            sub.setVisibility(View.GONE);
             create.setVisibility(View.VISIBLE);
+            AndroidHelper.makeToast(this, "Create new password", false);
             create.setOnClickListener(
                     new View.OnClickListener()  {
                         @Override
@@ -71,14 +71,14 @@ public class MainDrawActivity extends Activity {
         }
         else if (i.getBooleanExtra(getString(R.string.change_pw_check), false)) {
             sub.setVisibility(View.VISIBLE);
-            AndroidHelper.makeToast(MainDrawActivity.this, "Enter current password", false);
+            AndroidHelper.makeToast(this, "Enter current password", false);
             sub.setOnClickListener(
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 
                             Intent returnIntent = new Intent();
-                            boolean isCorrect = d.comparePw(MainDrawActivity.this, freedom);
+                            boolean isCorrect = d.comparePw(freedom, MainDrawActivity.this);
                             if(!isCorrect)  {
                                 AndroidHelper.makeToast(MainDrawActivity.this, "Incorrect, try again", false);
                             }
@@ -94,24 +94,24 @@ public class MainDrawActivity extends Activity {
 
         }
         else  {
-            create.setVisibility(View.GONE);
             sub.setVisibility(View.VISIBLE);
             sub.setOnClickListener(
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if(d.displayStrokes(freedom, getBaseContext()))  {
+                            if(d.comparePw(freedom, MainDrawActivity.this))  {
                                 AndroidHelper.makeToast(MainDrawActivity.this,"CORRECT", false);
                                 //killActivity();
                             }
                             else  {
-                                AndroidHelper.makeToast(MainDrawActivity.super.getApplicationContext(),"try again",false);
+                                AndroidHelper.makeToast(MainDrawActivity.this,"try again",false);
                             }
                         }
                     }
             );
 
         }
+
         Button clear = (Button) findViewById(R.id.clear_button);
         clear.setOnClickListener(
                 new View.OnClickListener() {
