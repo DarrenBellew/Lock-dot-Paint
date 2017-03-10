@@ -7,7 +7,12 @@
     <string name="enable_Lockscreen">Enable</string>
     <string name="disable_Lockscreen">Disable</string>
 
-    <string name="change_pw_check">New Password</string>
+    <string name="change_pw_check">Enter Current Password</string>
     <string name="change_pw_confirm">true</string>
-    <string name="change_pw">true</string>
+    <string name="change_pw">Enter New Password</string>
+    <string name="actionBar">true</string>
+    <string name="attempts">3</string>
+    <string name="testTitle">Testing Password</string>
+    <string name="attemptTitle">Attempt: </string>
+    <string name="settingsScreen">Lock.Paint Settings</string>
 </resources>

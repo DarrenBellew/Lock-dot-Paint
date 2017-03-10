@@ -37,10 +37,6 @@ public class DrawView extends View {
     Stroke curStroke = null;
     Context ctx;
 
-    ArrayList<Stroke> pwStrokes = null;
-    boolean clearCanvas = false;
-
-    Canvas storeCanv;
 
     //SETUP CODE
     public DrawView(Context ctx) {
@@ -82,8 +78,6 @@ public class DrawView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event)  {
 
-
-
         Coordinate temp = new Coordinate((int) event.getX(), (int) event.getY());
 
         switch(event.getAction()) {
@@ -107,6 +101,7 @@ public class DrawView extends View {
                 return false;
         }
 
+
         //schedule a repaint
         invalidate();
         return true;
@@ -129,9 +124,7 @@ public class DrawView extends View {
 
     public void clearCanvas()  {
         path.reset();
-        System.out.println(strokes);
         strokes = new ArrayList<>();
-
         invalidate();
     }
 

@@ -12,8 +12,13 @@ import android.widget.ListView;
 
 public class AppSettingsActivity extends Activity {
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        this.getActionBar().setTitle(R.string.settingsScreen);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_settings);
 
@@ -45,15 +50,19 @@ public class AppSettingsActivity extends Activity {
                                 i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
                                 //i.putExtra(AppSettingsActivity.this.getString(R.string.change_pw_check), true);
                                 i.putExtra(AppSettingsActivity.this.getString(R.string.change_pw_check), true);
+                                i.putExtra(getString(R.string.actionBar), getString(R.string.change_pw_check));
                                 AppSettingsActivity.this.startActivityForResult(i, 1);
                                 break;
                             case(2):
                                 i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
+                                i.putExtra(getString(R.string.actionBar), getString(R.string.testTitle));
+                                i.putExtra(AppSettingsActivity.this.getString(R.string.testTitle), true);
                                 AppSettingsActivity.this.startActivity(i);
                                 break;
                             case(3):
                                 i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
                                 i.putExtra(AppSettingsActivity.this.getString(R.string.change_pw), true);
+                                i.putExtra(getString(R.string.actionBar), getString(R.string.change_pw));
                                 AppSettingsActivity.this.startActivity(i);
                                 break;
                         }
@@ -72,6 +81,7 @@ public class AppSettingsActivity extends Activity {
                 if(result)  {
                     Intent i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
                     i.putExtra(AppSettingsActivity.this.getString(R.string.change_pw), true);
+                    i.putExtra(AppSettingsActivity.this.getString(R.string.actionBar), AppSettingsActivity.this.getString(R.string.change_pw));
                     AppSettingsActivity.this.startActivity(i);
                 }
             }

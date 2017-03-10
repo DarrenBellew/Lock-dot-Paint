@@ -15,38 +15,21 @@ import org.json.JSONObject;
 
 public class MainDrawActivity extends Activity {
 
+    int attempts;
+    String actionBarTitle;
+
     @Override
     public void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final Intent i = getIntent();
 
-
-
-        //TESTING
-        JSON_Helper jsonObj = new JSON_Helper("password.json");
-        JSONObject simplevalue = null;
-        try {
-            //simplevalue.put("password", "helloWorld");
-            simplevalue =  jsonObj.loadJSON(this);
-            AndroidHelper.makeToast(MainDrawActivity.super.getApplicationContext(),simplevalue.toString(),false);
-            System.out.println(simplevalue);
-            jsonObj.writeJSON(simplevalue, this);
-
-
-        }
-        catch(JSONException jsone)  {
-            jsone.printStackTrace();
-        }
-        //END TESTING
-
-
         //Gets display (screen) size to calculate an area of freedom
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         final int height = displayMetrics.heightPixels/10;
         final int width = displayMetrics.widthPixels/10;
-        final int freedom = (int) (GeometryMath.round((double) ((height < width) ? height : width), 10) * 1.5);
+        final int freedom = (int) (GeometryMath.round((double) ((height < width) ? height : width), 10) * 2);
 
         //initialise draw area
         final DrawView d = (DrawView) findViewById(R.id.drawArea);
@@ -55,23 +38,33 @@ public class MainDrawActivity extends Activity {
         final Button sub = (Button) findViewById(R.id.submit_button);
         final Button create = (Button) findViewById(R.id.create_button);
 
+
+
+        PasswordHelper.displayPw(this);
+
+        resetAttempts();
+
+        actionBarTitle = i.getStringExtra(getString(R.string.actionBar));
+        changeTitle(actionBarTitle);
+
+
         if(i.getBooleanExtra(getString(R.string.change_pw), false)) {
             create.setVisibility(View.VISIBLE);
-            AndroidHelper.makeToast(this, "Create new password", false);
+
             create.setOnClickListener(
                     new View.OnClickListener()  {
                         @Override
                         public void onClick(View view) {
                             d.createPassword(MainDrawActivity.this);
                             AndroidHelper.makeToast(MainDrawActivity.this, "Password created", false);
-                            killActivity();
+                            //killActivity();
                         }
                     }
             );
         }
         else if (i.getBooleanExtra(getString(R.string.change_pw_check), false)) {
             sub.setVisibility(View.VISIBLE);
-            AndroidHelper.makeToast(this, "Enter current password", false);
+
             sub.setOnClickListener(
                     new View.OnClickListener() {
                         @Override
@@ -94,6 +87,10 @@ public class MainDrawActivity extends Activity {
 
         }
         else  {
+            if(!i.getBooleanExtra(this.getString(R.string.testTitle), false))  {
+                actionBarTitle = getString(R.string.attemptTitle);
+                getActionBar().setTitle(actionBarTitle + attempts);
+            }
             sub.setVisibility(View.VISIBLE);
             sub.setOnClickListener(
                     new View.OnClickListener() {
@@ -104,6 +101,8 @@ public class MainDrawActivity extends Activity {
                                 //killActivity();
                             }
                             else  {
+                                incorrectAttempt();
+                                getActionBar().setTitle(actionBarTitle + attempts);
                                 AndroidHelper.makeToast(MainDrawActivity.this,"try again",false);
                             }
                         }
@@ -131,6 +130,18 @@ public class MainDrawActivity extends Activity {
 
     private void killActivity()  {
         finish();
+    }
+
+    private void incorrectAttempt()  {
+        attempts -= 1;
+    }
+
+    private void resetAttempts()  {
+        attempts = Integer.parseInt(getString(R.string.attempts));
+    }
+
+    private void changeTitle(String title)  {
+        getActionBar().setTitle(title);
     }
 
 }

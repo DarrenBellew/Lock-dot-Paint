@@ -26,6 +26,8 @@ public class PasswordHelper {
 
 
     public static void storeNew(ArrayList<Stroke> strokes, Context ctx)  {
+
+
         JSON_Helper jhelp = new JSON_Helper(filename);
         JSONObject objToStore = new JSONObject();
         JSONArray arrToStore = new JSONArray();
@@ -38,12 +40,11 @@ public class PasswordHelper {
                 subObj.put("x", stroke.getStart().getX());
                 subObj.put("y", stroke.getStart().getY());
                 subArr.put(subObj);
+                subObj = new JSONObject();
                 subObj.put("x", stroke.getEnd().getX());
                 subObj.put("y", stroke.getEnd().getY());
                 subArr.put(subObj);
                 arrToStore.put(subArr);
-
-
             }
             objToStore.put(passwordTag, arrToStore);
             objToStore.put(lengthTag, strokes.size());
@@ -52,6 +53,18 @@ public class PasswordHelper {
         catch(JSONException jse){
             AndroidHelper.makeToast(ctx, "Error creating new password", false);
             jse.printStackTrace();
+        }
+    }
+
+    public static void displayPw(Context ctx)  {
+        JSON_Helper jhelp = new JSON_Helper(filename);
+
+        try  {
+            JSONObject jsonpw = jhelp.loadJSON(ctx);
+            AndroidHelper.makeToast(ctx, jsonpw.toString(), false);
+        }
+        catch (JSONException e)  {
+            e.printStackTrace();
         }
     }
 

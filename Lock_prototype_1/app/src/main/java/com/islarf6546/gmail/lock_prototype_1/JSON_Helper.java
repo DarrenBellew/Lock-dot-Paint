@@ -95,6 +95,8 @@ public class JSON_Helper {
             ioe.printStackTrace();
         }
 
+        System.out.println("PATH: " + ctx.getFilesDir().getAbsolutePath());
+
         return false;
     }
 }
