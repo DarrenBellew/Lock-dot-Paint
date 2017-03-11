@@ -10,8 +10,25 @@ import android.content.Intent;
 
 public class Receiver extends BroadcastReceiver {
 
+
+
+
     @Override
     public void onReceive(Context ctx, Intent i)  {
+
+        System.out.println("RECIEVED??");
+
+        String action = i.getAction();
+        if(action.equals(Intent.ACTION_SCREEN_OFF))  {
+            Intent changeIntent = new Intent(ctx, MainDrawActivity.class);
+            changeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            ctx.startActivity(changeIntent);
+
+            System.out.println("ACTION SCREEN OFF");
+        }
+
+        Intent changeIntent = new Intent(ctx, LockListenerService.class);
+        ctx.startService(changeIntent);
 
     }
 }

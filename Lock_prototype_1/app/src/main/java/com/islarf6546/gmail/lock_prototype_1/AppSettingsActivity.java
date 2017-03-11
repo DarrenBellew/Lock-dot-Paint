@@ -53,6 +53,14 @@ public class AppSettingsActivity extends Activity {
                                 i.putExtra(getString(R.string.actionBar), getString(R.string.change_pw_check));
                                 AppSettingsActivity.this.startActivityForResult(i, 1);
                                 break;
+                            case(1):
+                                if(LockListenerService.isRunning())  {
+                                    stopService(new Intent(AppSettingsActivity.this, LockListenerService.class));
+                                }
+                                else  {
+                                    startService(new Intent(AppSettingsActivity.this, LockListenerService.class));
+                                }
+
                             case(2):
                                 i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
                                 i.putExtra(getString(R.string.actionBar), getString(R.string.testTitle));
