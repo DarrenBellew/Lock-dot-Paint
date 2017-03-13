@@ -34,12 +34,20 @@ public class LockListenerService extends Service {
 
         super.onStartCommand(intent, flags, startId);
         Log.d(TAG, "FirstService Started");
-        this.stopSelf();
 
-        System.out.println("SERVICE START COMMAND: "
-                + "\nintent: " + intent
-                + "\nflags: " + flags
-                + "\nstartId: " + startId);
+        KeyguardManager.KeyguardLock key;
+        KeyguardManager km = (KeyguardManager)getSystemService(KEYGUARD_SERVICE);
+        key = km.newKeyguardLock("IN");
+        key.disableKeyguard();
+
+
+
+
+        IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
+        filter.addAction(Intent.ACTION_BOOT_COMPLETED);
+        Receiver receiver = new Receiver();
+        registerReceiver(receiver, filter);
+
         return START_NOT_STICKY;
     }
 
@@ -54,4 +62,5 @@ public class LockListenerService extends Service {
     public static boolean isRunning()  {
         return isRunning;
     }
+
 }
