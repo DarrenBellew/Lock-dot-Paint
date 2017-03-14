@@ -11,7 +11,7 @@ import android.view.WindowManager;
 
 public class LockListenerService extends Service {
 
-
+    Receiver receiver;
     private static String TAG = "lock_screen_service";
 
     public static boolean isRunning = false;
@@ -35,25 +35,27 @@ public class LockListenerService extends Service {
         super.onStartCommand(intent, flags, startId);
         Log.d(TAG, "FirstService Started");
 
-        KeyguardManager.KeyguardLock key;
+        /*KeyguardManager.KeyguardLock key;
         KeyguardManager km = (KeyguardManager)getSystemService(KEYGUARD_SERVICE);
         key = km.newKeyguardLock("IN");
-        key.disableKeyguard();
+        key.disableKeyguard();*/
 
 
 
 
         IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
         filter.addAction(Intent.ACTION_BOOT_COMPLETED);
-        Receiver receiver = new Receiver();
+        receiver = new Receiver();
         registerReceiver(receiver, filter);
 
-        return START_NOT_STICKY;
+        return START_STICKY;
     }
 
     @Override
     public void onDestroy()  {
         //TODO: Auto-generated method stub
+        unregisterReceiver(receiver);
+
         isRunning = false;
         super.onDestroy();
         Log.d(TAG, "FirstService destroyed");

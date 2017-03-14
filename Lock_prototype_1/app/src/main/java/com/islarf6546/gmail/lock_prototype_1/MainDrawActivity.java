@@ -98,7 +98,7 @@ public class MainDrawActivity extends Activity {
                         public void onClick(View view) {
                             if(d.comparePw(freedom, MainDrawActivity.this))  {
                                 AndroidHelper.makeToast(MainDrawActivity.this,"CORRECT", false);
-                                //killActivity();
+                                killActivity();
                             }
                             else  {
                                 incorrectAttempt();

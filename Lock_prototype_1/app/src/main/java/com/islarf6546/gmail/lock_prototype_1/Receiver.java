@@ -23,15 +23,13 @@ public class Receiver extends BroadcastReceiver {
 
         String action = i.getAction();
         if(action.equals(Intent.ACTION_SCREEN_OFF))  {
+            System.out.println("ACTION SCREEN OFF REQUEST RECEIVED");
+
             Intent changeIntent = new Intent(ctx, MainDrawActivity.class);
             changeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             ctx.startActivity(changeIntent);
 
-            System.out.println("ACTION SCREEN OFF");
         }
-
-        Intent changeIntent = new Intent(ctx, LockListenerService.class);
-        ctx.startService(changeIntent);
 
     }
 }

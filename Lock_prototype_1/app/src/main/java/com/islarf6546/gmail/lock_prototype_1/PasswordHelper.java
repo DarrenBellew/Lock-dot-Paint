@@ -59,13 +59,33 @@ public class PasswordHelper {
     public static void displayPw(Context ctx)  {
         JSON_Helper jhelp = new JSON_Helper(filename);
 
-        try  {
-            JSONObject jsonpw = jhelp.loadJSON(ctx);
-            AndroidHelper.makeToast(ctx, jsonpw.toString(), false);
+        try {
+            if (isPwSet(ctx)) {
+                JSONObject jsonpw = jhelp.loadJSON(ctx);
+                AndroidHelper.makeToast(ctx, jsonpw.toString(), false);
+            }
         }
         catch (JSONException e)  {
             e.printStackTrace();
         }
+    }
+
+    public static boolean isPwSet(Context ctx)  {
+        JSON_Helper jhelp = new JSON_Helper(filename);
+
+        try {
+            JSONObject jsonpw = jhelp.loadJSON(ctx);
+            if (jsonpw != null) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        catch(JSONException e)  {
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
     public static boolean comparePw(ArrayList<Stroke> input, int freedom, Context ctx)  {

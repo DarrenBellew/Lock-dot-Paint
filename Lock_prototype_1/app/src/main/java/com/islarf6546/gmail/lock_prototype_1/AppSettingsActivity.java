@@ -41,31 +41,42 @@ public class AppSettingsActivity extends Activity {
                         Intent i;
                         switch(position)  {
                             case(0):
-                                //new password
+                                if(PasswordHelper.isPwSet(AppSettingsActivity.this)) {
 
-                                //start maindraw
-                                //ask for password
-                                //have submit send an intent back
-                                //if intent back is true, ask for create new PW
-                                i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
-                                //i.putExtra(AppSettingsActivity.this.getString(R.string.change_pw_check), true);
-                                i.putExtra(AppSettingsActivity.this.getString(R.string.change_pw_check), true);
-                                i.putExtra(getString(R.string.actionBar), getString(R.string.change_pw_check));
-                                AppSettingsActivity.this.startActivityForResult(i, 1);
-                                break;
-                            case(1):
-                                if(LockListenerService.isRunning())  {
-                                    stopService(new Intent(AppSettingsActivity.this, LockListenerService.class));
+
+                                    i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
+                                    //i.putExtra(AppSettingsActivity.this.getString(R.string.change_pw_check), true);
+                                    i.putExtra(AppSettingsActivity.this.getString(R.string.change_pw_check), true);
+                                    i.putExtra(getString(R.string.actionBar), getString(R.string.change_pw_check));
+                                    AppSettingsActivity.this.startActivityForResult(i, 1);
                                 }
                                 else  {
-                                    startService(new Intent(AppSettingsActivity.this, LockListenerService.class));
+                                    AndroidHelper.makeToast(AppSettingsActivity.this, "Please create a password first", false);
                                 }
+                                break;
+                            case(1):
+                                if(PasswordHelper.isPwSet(AppSettingsActivity.this)) {
+                                    if (LockListenerService.isRunning()) {
+                                        stopService(new Intent(AppSettingsActivity.this, LockListenerService.class));
+                                    } else {
+                                        startService(new Intent(AppSettingsActivity.this, LockListenerService.class));
+                                    }
+                                }
+                                else  {
+                                    AndroidHelper.makeToast(AppSettingsActivity.this, "Please create a password first", false);
+                                }
+                                break;
 
                             case(2):
-                                i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
-                                i.putExtra(getString(R.string.actionBar), getString(R.string.testTitle));
-                                i.putExtra(AppSettingsActivity.this.getString(R.string.testTitle), true);
-                                AppSettingsActivity.this.startActivity(i);
+                                if(PasswordHelper.isPwSet(AppSettingsActivity.this))  {
+                                    i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
+                                    i.putExtra(getString(R.string.actionBar), getString(R.string.testTitle));
+                                    i.putExtra(AppSettingsActivity.this.getString(R.string.testTitle), true);
+                                    AppSettingsActivity.this.startActivity(i);
+                                }
+                                else  {
+                                    AndroidHelper.makeToast(AppSettingsActivity.this, "Please create a password first", false);
+                                }
                                 break;
                             case(3):
                                 i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
