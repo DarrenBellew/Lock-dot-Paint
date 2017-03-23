@@ -2,32 +2,34 @@ package com.islarf6546.gmail.lock_prototype_1;
 
 import android.content.Context;
 
+import java.util.ArrayList;
+
 /**
  * Created by islarf on 04/03/17.
  */
 
 public class SettingsHandler {
 
-    private static String[] options;
 
-    public static String[] getOptions(Context ctx)  {
-        options = new String[]  {
-                ctx.getString(R.string.change_pw_check),
-                ctx.getString(R.string.enable_Lockscreen)
-        };
+    public static ArrayList<String> getOptions(Context ctx, boolean serviceRunning)  {
 
+        ArrayList<String> options = new ArrayList<>();
+        options.add(ctx.getString(R.string.changePwOpt));
+        if(serviceRunning)  {
+            options.add(ctx.getString(R.string.disablePwOpt));
+        }
+        else  {
+            options.add(ctx.getString(R.string.enablePwOpt));
+        }
+        options.add(ctx.getString(R.string.testPwOpt));
+
+        if(!PasswordHelper.isPwSet(ctx)) {
+            options.add(ctx.getString(R.string.createPwOpt));
+        }
+        else  {
+
+        }
         return options;
     }
 
-    public static void executeAction(int position, Context ctx)  {
-        options = getOptions(ctx);
-
-        switch(position)  {
-            case(0):
-
-                break;
-            default:
-                break;
-        }
-    }
 }

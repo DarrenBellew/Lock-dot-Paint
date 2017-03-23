@@ -15,4 +15,13 @@
     <string name="testTitle">Testing Password</string>
     <string name="attemptTitle">Attempt: </string>
     <string name="settingsScreen">Lock.Paint Settings</string>
+
+
+    <string name="createPwWarn">Please Create a Password First</string>
+
+    <string name="changePwOpt">Change Password</string>
+    <string name="enablePwOpt">Enable Password</string>
+    <string name="disablePwOpt">Disable Password</string>
+    <string name="testPwOpt">Test Password</string>
+    <string name="createPwOpt">Create Password</string>
 </resources>
