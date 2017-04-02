@@ -4,11 +4,19 @@
     <string name="clear">Clear</string>
 
     <string name="i_newPw">true</string>
-    <string name="enable_Lockscreen">Enable</string>
-    <string name="disable_Lockscreen">Disable</string>
 
-    <string name="change_pw_check">Enter Current Password</string>
-    <string name="change_pw_confirm">true</string>
+    <string name="enable_Lockscreen">Enable Lockscreen</string>
+    <string name="disable_Lockscreen">Disable Lockscreen</string>
+
+    <string name="resetPassword">Reset Password</string>
+
+
+    <string name="filename">password.json</string>
+    <string name="pwTag">password</string>
+    <string name="lengthTag">length</string>
+
+    <string name="checkPw">Enter Current Password</string>
+    <string name="checkPw_confirm">not_true</string>
     <string name="change_pw">Enter New Password</string>
     <string name="actionBar">true</string>
     <string name="attempts">3</string>

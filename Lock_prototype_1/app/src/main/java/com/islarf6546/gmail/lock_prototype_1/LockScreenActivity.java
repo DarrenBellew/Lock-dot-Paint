@@ -8,20 +8,36 @@ import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-public class MainDrawActivity extends Activity {
+public class LockScreenActivity extends Activity {
 
     int attempts;
     String actionBarTitle;
+    private static boolean running = false;
+
+
+    @Override
+    public void onStart()  {
+        running = true;
+        super.onStart();
+    }
+    @Override
+    public void onStop()  {
+        running = false;
+        super.onStop();
+    }
+
+    public static boolean isRunning()  {
+        return running;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+
+
+        setContentView(R.layout.lock_screen_activity);
         final Intent i = getIntent();
 
         //Gets display (screen) size to calculate an area of freedom
@@ -39,8 +55,7 @@ public class MainDrawActivity extends Activity {
         final Button create = (Button) findViewById(R.id.create_button);
 
 
-
-        PasswordHelper.displayPw(this);
+        //PasswordHelper.displayPw(this);
 
         resetAttempts();
 
@@ -55,14 +70,14 @@ public class MainDrawActivity extends Activity {
                     new View.OnClickListener()  {
                         @Override
                         public void onClick(View view) {
-                            d.createPassword(MainDrawActivity.this);
-                            AndroidHelper.makeToast(MainDrawActivity.this, "Password created", false);
-                            //killActivity();
+                            d.createPassword(LockScreenActivity.this);
+                            AndroidHelper.makeToast(LockScreenActivity.this, "Password created", false);
+                            killActivity();
                         }
                     }
             );
         }
-        else if (i.getBooleanExtra(getString(R.string.change_pw_check), false)) {
+        else if (i.getBooleanExtra(getString(R.string.checkPw), false)) {
             sub.setVisibility(View.VISIBLE);
 
             sub.setOnClickListener(
@@ -71,14 +86,14 @@ public class MainDrawActivity extends Activity {
                         public void onClick(View view) {
 
                             Intent returnIntent = new Intent();
-                            boolean isCorrect = d.comparePw(freedom, MainDrawActivity.this);
+                            boolean isCorrect = d.comparePassword(freedom, LockScreenActivity.this);
                             if(!isCorrect)  {
-                                AndroidHelper.makeToast(MainDrawActivity.this, "Incorrect, try again", false);
+                                AndroidHelper.makeToast(LockScreenActivity.this, "Incorrect, try again", false);
                             }
                             else {
-                                AndroidHelper.makeToast(MainDrawActivity.this, "Correct", false);
-                                returnIntent.putExtra(getString(R.string.change_pw_check), true);
-                                setResult(Activity.RESULT_OK, i);
+                                AndroidHelper.makeToast(LockScreenActivity.this, "Correct", false);
+                                returnIntent.putExtra(getString(R.string.checkPw_confirm), true);
+                                setResult(Activity.RESULT_OK, returnIntent);
                                 killActivity();
                             }
                         }
@@ -96,20 +111,22 @@ public class MainDrawActivity extends Activity {
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if(d.comparePw(freedom, MainDrawActivity.this))  {
-                                AndroidHelper.makeToast(MainDrawActivity.this,"CORRECT", false);
+                            if(d.comparePassword(freedom, LockScreenActivity.this))  {
+                                AndroidHelper.makeToast(LockScreenActivity.this,"CORRECT", false);
                                 killActivity();
                             }
                             else  {
                                 incorrectAttempt();
                                 getActionBar().setTitle(actionBarTitle + attempts);
-                                AndroidHelper.makeToast(MainDrawActivity.this,"try again",false);
+                                AndroidHelper.makeToast(LockScreenActivity.this,"try again",false);
                             }
                         }
                     }
             );
 
         }
+
+        System.out.println("I made it here");
 
         Button clear = (Button) findViewById(R.id.clear_button);
         clear.setOnClickListener(

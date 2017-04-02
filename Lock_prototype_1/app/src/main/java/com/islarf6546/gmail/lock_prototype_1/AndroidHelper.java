@@ -1,6 +1,5 @@
 package com.islarf6546.gmail.lock_prototype_1;
 
-import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -23,4 +22,6 @@ public class AndroidHelper {
         }
 
     }
+
+
 }

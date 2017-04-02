@@ -1,10 +1,5 @@
 package com.islarf6546.gmail.lock_prototype_1;
 
-import android.app.Activity;
-import android.content.Context;
-import android.util.DisplayMetrics;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static java.security.AccessController.getContext;
@@ -43,10 +38,10 @@ public class GeometryMath {
         return true;
     }
 
-    public static double totalDistance(Coordinate store, Coordinate input)  {
+    public static double totalDistance(Coordinate x, Coordinate y)  {
         double distance = Math.sqrt(
-                Math.pow(input.getX() - store.getX(), 2)
-                + Math.pow(input.getY() - store.getY(), 2));
+                Math.pow(y.getX() - x.getX(), 2)
+                + Math.pow(y.getY() - x.getY(), 2));
 
         return distance;
     }
@@ -58,8 +53,10 @@ public class GeometryMath {
 
         for(Stroke s : toTranslate)  {
 
-            s.setStart(new Coordinate(s.getStart().getX() - smallest.getX(),
-                    s.getStart().getY() - smallest.getY()));
+            s.setStart(new Coordinate(
+                    s.getStart().getX() - smallest.getX(),
+                    s.getStart().getY() - smallest.getY()
+            ));
             s.setEnd(new Coordinate(
                     s.getEnd().getX() - smallest.getX(),
                     s.getEnd().getY() - smallest.getY()

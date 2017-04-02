@@ -19,14 +19,16 @@ public class PasswordHelper {
      */
 
 
-    final static private String filename = "password.json";
-    final static private String passwordTag = "password";
-    final static private String lengthTag = "length";
+
+    static private String filename;
+    static private String passwordTag;
+    static private String lengthTag;
 
 
 
     public static void storeNew(ArrayList<Stroke> strokes, Context ctx)  {
 
+        initTags(ctx);
 
         JSON_Helper jhelp = new JSON_Helper(filename);
         JSONObject objToStore = new JSONObject();
@@ -57,6 +59,8 @@ public class PasswordHelper {
     }
 
     public static void displayPw(Context ctx)  {
+        initTags(ctx);
+
         JSON_Helper jhelp = new JSON_Helper(filename);
 
         try {
@@ -71,11 +75,15 @@ public class PasswordHelper {
     }
 
     public static boolean isPwSet(Context ctx)  {
+        initTags(ctx);
+
         JSON_Helper jhelp = new JSON_Helper(filename);
 
         try {
             JSONObject jsonpw = jhelp.loadJSON(ctx);
-            if (jsonpw != null) {
+
+            System.out.println("JSONPW: " + jsonpw);
+            if (jsonpw != null && !jsonpw.get(passwordTag).equals("") && jsonpw.get(passwordTag) != null && !jsonpw.equals(new JSONObject())) {
                 return true;
             } else {
                 return false;
@@ -89,6 +97,7 @@ public class PasswordHelper {
     }
 
     public static boolean comparePw(ArrayList<Stroke> input, int freedom, Context ctx)  {
+        initTags(ctx);
 
         ArrayList<Stroke> storepw = new ArrayList<Stroke>();
         try {
@@ -117,5 +126,32 @@ public class PasswordHelper {
         else  {
             return false;
         }
+    }
+
+    private static void initTags(Context ctx)  {
+        filename = ctx.getString(R.string.filename);
+        passwordTag = ctx.getString(R.string.pwTag);
+        lengthTag = ctx.getString(R.string.lengthTag);
+    }
+
+
+    //TESTING ONLY
+    public static void resetPassword(Context ctx)  {
+        initTags(ctx);
+
+        JSON_Helper jhelp = new JSON_Helper(filename);
+        JSONObject jsonpw = new JSONObject();
+
+        try {
+            jsonpw = jhelp.loadJSON(ctx);
+            jsonpw.put(passwordTag, "");
+            jsonpw.put(lengthTag, "");
+        }
+        catch(JSONException jse)  {
+            jse.printStackTrace();
+        }
+
+        jhelp.writeJSON(jsonpw, ctx);
+
     }
 }

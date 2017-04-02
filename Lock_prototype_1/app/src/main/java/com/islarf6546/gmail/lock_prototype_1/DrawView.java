@@ -5,21 +5,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Point;
-import android.graphics.PorterDuff;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.Toast;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -27,11 +15,15 @@ import static android.R.color.white;
 
 /**
  * Created by YamiVegeta on 25/01/2017.
+ *
+ * A lot of the code on this is abstracted and changed from that in this youtube video: https://www.youtube.com/watch?v=fRtytvw3yvY
+ *
  */
 public class DrawView extends View {
 
     private Paint paint = new Paint();
     private Path path = new Path();
+
 
     ArrayList<Stroke> strokes = new ArrayList<>();
     Stroke curStroke = null;
@@ -107,17 +99,13 @@ public class DrawView extends View {
         return true;
     }
 
-    public void displayStrokes(int freedom, Context ctx2)  {
-        strokes = GeometryMath.translateShapeToOrigin(strokes);
-        System.out.println(strokes);
-    }
 
     public void createPassword(Context ctx2)  {
         strokes = GeometryMath.translateShapeToOrigin(strokes);
         PasswordHelper.storeNew(strokes,ctx2);
     }
 
-    public boolean comparePw(int freedom, Context ctx2)  {
+    public boolean comparePassword(int freedom, Context ctx2)  {
         strokes = GeometryMath.translateShapeToOrigin(strokes);
         return PasswordHelper.comparePw(strokes, freedom, ctx2);
     }

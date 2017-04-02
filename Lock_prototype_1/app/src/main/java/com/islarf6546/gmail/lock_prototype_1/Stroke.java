@@ -36,9 +36,7 @@ public class Stroke {
         this.end=end;
     }
 
-    public Coordinate getEnd()  {
-        return end;
-    }
+    public Coordinate getEnd()  { return end; }
 
 
     @Override

@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.islarf6546.gmail.lock_prototype_1.MainDrawActivity">
+    tools:context="com.islarf6546.gmail.lock_prototype_1.LockScreenActivity">
 
 
     <com.islarf6546.gmail.lock_prototype_1.DrawView

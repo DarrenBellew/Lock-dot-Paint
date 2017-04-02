@@ -1,34 +1,17 @@
 package com.islarf6546.gmail.lock_prototype_1;
 
 import android.content.Context;
-import android.util.JsonWriter;
-import android.view.View;
-import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
 
-import static android.content.Context.MODE_PRIVATE;
-import static android.content.Context.POWER_SERVICE;
-import static android.os.ParcelFileDescriptor.MODE_READ_ONLY;
-import static android.os.ParcelFileDescriptor.MODE_WORLD_READABLE;
 import static android.os.ParcelFileDescriptor.MODE_WRITE_ONLY;
-import static android.widget.Toast.LENGTH_SHORT;
 
 /**
  * Created by Islarf on 23/12/2016.
@@ -44,9 +27,7 @@ public class JSON_Helper {
 
     String filename;
 
-    public JSON_Helper(String filename) {
-        this.filename = filename;
-    }
+    public JSON_Helper(String filename) { this.filename = filename; }
 
 
 

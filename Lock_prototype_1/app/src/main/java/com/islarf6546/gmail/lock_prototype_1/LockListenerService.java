@@ -16,9 +16,7 @@ public class LockListenerService extends Service {
 
     public static boolean isRunning = false;
 
-    public LockListenerService() {
-
-    }
+    //public LockListenerService() {}
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -34,13 +32,6 @@ public class LockListenerService extends Service {
 
         super.onStartCommand(intent, flags, startId);
         Log.d(TAG, "FirstService Started");
-
-        /*KeyguardManager.KeyguardLock key;
-        KeyguardManager km = (KeyguardManager)getSystemService(KEYGUARD_SERVICE);
-        key = km.newKeyguardLock("IN");
-        key.disableKeyguard();*/
-
-
 
 
         IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);

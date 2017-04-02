@@ -26,9 +26,6 @@ public class SettingsHandler {
         if(!PasswordHelper.isPwSet(ctx)) {
             options.add(ctx.getString(R.string.createPwOpt));
         }
-        else  {
-
-        }
         return options;
     }
 

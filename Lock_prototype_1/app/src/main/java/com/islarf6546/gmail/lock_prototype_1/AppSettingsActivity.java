@@ -3,7 +3,6 @@ package com.islarf6546.gmail.lock_prototype_1;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,7 +25,9 @@ public class AppSettingsActivity extends Activity {
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
+    //private GoogleApiClient client;
+
+    View enableDisableView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +37,15 @@ public class AppSettingsActivity extends Activity {
         setContentView(R.layout.activity_app_settings);
 
 
-        ArrayList<String> settings = SettingsHandler.getOptions(this, LockListenerService.isRunning());
+        //TESTING. DELETE.
+        //PasswordHelper.resetPassword(this);
+
+        final ArrayList<String> settings = SettingsHandler.getOptions(this, LockListenerService.isRunning());
 
 
-        ListAdapter theAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, settings);
+        final ListAdapter theAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, settings);
 
-        ListView settingsList = (ListView) findViewById(R.id.settingsListView);
-
+        final ListView settingsList = (ListView) findViewById(R.id.settingsListView);
 
 
         settingsList.setAdapter(theAdapter);
@@ -58,22 +61,31 @@ public class AppSettingsActivity extends Activity {
                             case (0):
                                 if (PasswordHelper.isPwSet(AppSettingsActivity.this)) {
 
-
-                                    i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
-                                    //i.putExtra(AppSettingsActivity.this.getString(R.string.change_pw_check), true);
-                                    i.putExtra(AppSettingsActivity.this.getString(R.string.change_pw_check), true);
-                                    i.putExtra(getString(R.string.actionBar), getString(R.string.change_pw_check));
+                                    i = new Intent(AppSettingsActivity.this, LockScreenActivity.class);
+                                    i.putExtra(getString(R.string.checkPw), true);
+                                    i.putExtra(getString(R.string.actionBar), getString(R.string.checkPw));
+                                    enableDisableView = view;
                                     AppSettingsActivity.this.startActivityForResult(i, 1);
+
                                 } else {
                                     AndroidHelper.makeToast(AppSettingsActivity.this, AppSettingsActivity.this.getString(R.string.createPwWarn), false);
                                 }
                                 break;
                             case (1):
                                 if (PasswordHelper.isPwSet(AppSettingsActivity.this)) {
-                                    if (LockListenerService.isRunning()) {
-                                        stopService(new Intent(AppSettingsActivity.this, LockListenerService.class));
-                                        ((TextView) view).setText(AppSettingsActivity.this.getText(R.string.enablePwOpt));
+                                    if (LockListenerService.isRunning() && PasswordHelper.isPwSet(AppSettingsActivity.this)) {
+
+                                        i = new Intent(AppSettingsActivity.this, LockScreenActivity.class);
+                                        i.putExtra(AppSettingsActivity.this.getString(R.string.checkPw), true);
+                                        i.putExtra(getString(R.string.actionBar), getString(R.string.disable_Lockscreen));
+
+                                        setEnableDisableView(view);
+
+                                        AppSettingsActivity.this.startActivityForResult(i, 2);
+
+
                                     } else {
+
                                         startService(new Intent(AppSettingsActivity.this, LockListenerService.class));
                                         ((TextView) view).setText(AppSettingsActivity.this.getText(R.string.disablePwOpt));
                                     }
@@ -84,7 +96,7 @@ public class AppSettingsActivity extends Activity {
 
                             case (2):
                                 if (PasswordHelper.isPwSet(AppSettingsActivity.this)) {
-                                    i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
+                                    i = new Intent(AppSettingsActivity.this, LockScreenActivity.class);
                                     i.putExtra(getString(R.string.actionBar), getString(R.string.testTitle));
                                     i.putExtra(AppSettingsActivity.this.getString(R.string.testTitle), true);
                                     AppSettingsActivity.this.startActivity(i);
@@ -94,20 +106,25 @@ public class AppSettingsActivity extends Activity {
                                 break;
                             case (3):
 
-                                i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
+
+                                i = new Intent(AppSettingsActivity.this, LockScreenActivity.class);
                                 i.putExtra(AppSettingsActivity.this.getString(R.string.change_pw), true);
                                 i.putExtra(getString(R.string.actionBar), getString(R.string.change_pw));
                                 AppSettingsActivity.this.startActivity(i);
 
+
+                                settings.remove(3);
+                                adapterView.requestLayout();
+
                                 break;
-
                         }
-
                     }
                 });
+
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        //client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -116,24 +133,58 @@ public class AppSettingsActivity extends Activity {
         System.out.println("RESULT");
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-                boolean result = data.getBooleanExtra(this.getString(R.string.change_pw_check), false);
+                boolean result = data.getBooleanExtra(this.getString(R.string.checkPw_confirm), false);
                 if (result) {
-                    Intent i = new Intent(AppSettingsActivity.this, MainDrawActivity.class);
+                    Intent i = new Intent(AppSettingsActivity.this, LockScreenActivity.class);
                     i.putExtra(AppSettingsActivity.this.getString(R.string.change_pw), true);
                     i.putExtra(AppSettingsActivity.this.getString(R.string.actionBar), AppSettingsActivity.this.getString(R.string.change_pw));
                     AppSettingsActivity.this.startActivity(i);
                 }
             }
+        }
+        else if(requestCode == 2)  {
+            if(resultCode == Activity.RESULT_OK)  {
+                boolean result = data.getBooleanExtra(this.getString(R.string.checkPw_confirm), false);
+
+                System.out.println("DATA: " + data.getExtras());
+
+                System.out.println("result: " + result + "\ngetString(R.string.checkPw_confirm): " + getString(R.string.checkPw_confirm));
+
+                if(result)  {
+                    stopService(new Intent(this, LockListenerService.class));
+                    ((TextView) enableDisableView).setText(AppSettingsActivity.this.getText(R.string.enablePwOpt));
+                }
+
+
+
+            }
+
         } else {
             System.out.println("ERROR MAYBE -> REQUEST CODE: " + requestCode);
         }
+    }
+
+    private void setEnableDisableView(View view)  {
+        enableDisableView = view;
+    }
+
+
+    private void resetActivity(boolean fin)  {
+        overridePendingTransition( 0, 0);
+        startActivity(getIntent());
+        overridePendingTransition( 0, 0);
+        if(fin)  {
+            finish();
+        }
+
+
     }
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    public Action getIndexApiAction() {
+    /*public Action getIndexApiAction() {
         Thing object = new Thing.Builder()
                 .setName("AppSettings Page") // TODO: Define a title for the content shown.
                 // TODO: Make sure this auto-generated URL is correct.
@@ -163,5 +214,5 @@ public class AppSettingsActivity extends Activity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
-    }
+    }*/
 }
