@@ -9,6 +9,7 @@
     <string name="disable_Lockscreen">Disable Lockscreen</string>
 
     <string name="resetPassword">Reset Password</string>
+    <string name="passwordAlready">Password Created, Use Change Password</string>
 
 
     <string name="filename">password.json</string>

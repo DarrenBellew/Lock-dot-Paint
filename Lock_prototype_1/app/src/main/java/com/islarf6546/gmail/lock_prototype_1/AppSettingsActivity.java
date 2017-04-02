@@ -28,7 +28,7 @@ public class AppSettingsActivity extends Activity {
     //private GoogleApiClient client;
 
     View enableDisableView;
-
+    ArrayList<String> settings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -40,7 +40,7 @@ public class AppSettingsActivity extends Activity {
         //TESTING. DELETE.
         //PasswordHelper.resetPassword(this);
 
-        final ArrayList<String> settings = SettingsHandler.getOptions(this, LockListenerService.isRunning());
+        settings = SettingsHandler.getOptions(this, LockListenerService.isRunning());
 
 
         final ListAdapter theAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, settings);
@@ -106,15 +106,16 @@ public class AppSettingsActivity extends Activity {
                                 break;
                             case (3):
 
+                                if(!PasswordHelper.isPwSet(AppSettingsActivity.this)) {
+                                    i = new Intent(AppSettingsActivity.this, LockScreenActivity.class);
+                                    i.putExtra(AppSettingsActivity.this.getString(R.string.change_pw), true);
+                                    i.putExtra(getString(R.string.actionBar), getString(R.string.change_pw));
+                                    AppSettingsActivity.this.startActivity(i);
+                                }
+                                else  {
+                                    AndroidHelper.makeToast(AppSettingsActivity.this, getString(R.string.passwordAlready), false);
+                                }
 
-                                i = new Intent(AppSettingsActivity.this, LockScreenActivity.class);
-                                i.putExtra(AppSettingsActivity.this.getString(R.string.change_pw), true);
-                                i.putExtra(getString(R.string.actionBar), getString(R.string.change_pw));
-                                AppSettingsActivity.this.startActivity(i);
-
-
-                                settings.remove(3);
-                                adapterView.requestLayout();
 
                                 break;
                         }
@@ -159,7 +160,8 @@ public class AppSettingsActivity extends Activity {
 
             }
 
-        } else {
+        }
+        else {
             System.out.println("ERROR MAYBE -> REQUEST CODE: " + requestCode);
         }
     }
