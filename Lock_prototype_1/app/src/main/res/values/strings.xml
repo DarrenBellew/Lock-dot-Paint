@@ -19,6 +19,7 @@
     <string name="checkPw">Enter Current Password</string>
     <string name="checkPw_confirm">not_true</string>
     <string name="change_pw">Enter New Password</string>
+    <string name="enter_pw">Enter Password</string>
     <string name="actionBar">true</string>
     <string name="attempts">3</string>
     <string name="testTitle">Testing Password</string>

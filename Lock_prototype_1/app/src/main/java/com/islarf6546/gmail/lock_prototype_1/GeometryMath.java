@@ -4,22 +4,24 @@ import java.util.ArrayList;
 
 import static java.security.AccessController.getContext;
 
-/**
- * Created by islarf on 18/02/17.
- */
+/*
+* Author: Darren Bellew
+*
+* This class provides static functions that will execute geometry related mathematics and return a result.
+*/
 
 public class GeometryMath {
 
-    /*
-        Custom MATH class to execute math functions
-     */
 
     public static long round(double n, int v)  {
         return Math.round(n/v) * v;
     }
 
     public static boolean isCorrect(ArrayList<Stroke> storePw, ArrayList<Stroke> input, int freedom)  {
-
+        /*
+        * This method checks if the first array list, "is correct" to the inputted array list.
+        * Freedom is used as an area of freedom to allow for human error.
+        */
         if(storePw.size() == input.size()) {
 
             for(int i=0; i < storePw.size(); i++)  {
@@ -39,6 +41,9 @@ public class GeometryMath {
     }
 
     public static double totalDistance(Coordinate x, Coordinate y)  {
+        /*
+        * Gets the distance between two coordinates and returns the result as a double.
+        */
         double distance = Math.sqrt(
                 Math.pow(y.getX() - x.getX(), 2)
                 + Math.pow(y.getY() - x.getY(), 2));
@@ -47,6 +52,11 @@ public class GeometryMath {
     }
 
     public static ArrayList<Stroke> translateShapeToOrigin(ArrayList<Stroke> toTranslate)  {
+
+        /*
+        * This function gets the smallest x and y value over the entire array list, and subtracts them from the x and y values, respectively, of all the start and end points.
+        */
+
         ArrayList<Stroke> translatedShape = new ArrayList<>();
 
         Coordinate smallest = findSmallest(toTranslate);
@@ -69,6 +79,9 @@ public class GeometryMath {
     }
 
     public static Coordinate findSmallest(ArrayList<Stroke> toTranslate)  {
+        /*
+        * Finds the smallest x and y values in a list of strokes.
+         */
         Coordinate toRet;
         int y = Integer.MAX_VALUE;
         int x = Integer.MAX_VALUE;

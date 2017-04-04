@@ -13,12 +13,15 @@ import java.util.ArrayList;
 
 import static android.R.color.white;
 
-/**
- * Created by YamiVegeta on 25/01/2017.
- *
- * A lot of the code on this is abstracted and changed from that in this youtube video: https://www.youtube.com/watch?v=fRtytvw3yvY
- *
- */
+/*
+* Author: Darren Bellew
+*
+* This class is for Coordinates. holds 2 integers, an x and a y value.
+* Also has a funtion to round the coordinates to the neares 100.
+*
+* The base functionality of this class, is abstracted and changed from that displayed in this youtube video: https://www.youtube.com/watch?v=fRtytvw3yvY
+*
+*/
 public class DrawView extends View {
 
     private Paint paint = new Paint();
@@ -30,7 +33,7 @@ public class DrawView extends View {
     Context ctx;
 
 
-    //SETUP CODE
+    //SETUP CODE FOR CANVAS. SEE YOUTUBE VIDEO FOR REFERENCE.
     public DrawView(Context ctx) {
         super(ctx);
         init(null,0, ctx);
@@ -55,20 +58,26 @@ public class DrawView extends View {
         paint.setStrokeWidth(5f);
 
     }
-    //END SETUP CODE
 
-
-
-    //onDraw. clear code does not work yet.
     @Override
     protected void onDraw(Canvas canvas)  {
         canvas.drawPath(path, paint);
     }
 
+    //END SETUP CODE
 
-    //Executes on touching
+
+
+    /*
+    * This event will get called every time a touch event happens.
+    * Action down, move and up are checked for using event.getAction(). on DOWN and UP the coordinates are stored as start and up respecively and stored into strokes on action_up.
+    *
+    * This class also moves the black stroke on the canvas.
+    */
     @Override
     public boolean onTouchEvent(MotionEvent event)  {
+
+
 
         Coordinate temp = new Coordinate((int) event.getX(), (int) event.getY());
 
@@ -100,6 +109,9 @@ public class DrawView extends View {
     }
 
 
+    /*
+    * The following 2 functions are called to create the current password stored in stroke, or to compare the password and return a boolean.
+    */
     public void createPassword(Context ctx2)  {
         strokes = GeometryMath.translateShapeToOrigin(strokes);
         PasswordHelper.storeNew(strokes,ctx2);
@@ -109,6 +121,7 @@ public class DrawView extends View {
         strokes = GeometryMath.translateShapeToOrigin(strokes);
         return PasswordHelper.comparePw(strokes, freedom, ctx2);
     }
+
 
     public void clearCanvas()  {
         path.reset();

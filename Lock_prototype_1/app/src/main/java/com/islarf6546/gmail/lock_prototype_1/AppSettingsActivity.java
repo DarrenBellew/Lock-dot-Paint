@@ -18,14 +18,20 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 
+/*
+* Author: Darren Bellew
+*
+* This class is an activity for a list view which acts as a settings screen for the application.
+*
+* The buttons are accessed through a switch/case for their position on the settings screen.
+* The settings text is retrieved into a String arraylist from SettingsHandler which reads the strings from strings.xml.
+ */
+
+
 public class AppSettingsActivity extends Activity {
 
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    //private GoogleApiClient client;
+
 
     View enableDisableView;
     ArrayList<String> settings;
@@ -36,9 +42,10 @@ public class AppSettingsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_settings);
 
+        /*
+        * The options for the list are gotten from SettingsHandler
+        */
 
-        //TESTING. DELETE.
-        //PasswordHelper.resetPassword(this);
 
         settings = SettingsHandler.getOptions(this, LockListenerService.isRunning());
 
@@ -59,6 +66,15 @@ public class AppSettingsActivity extends Activity {
                         Intent i;
                         switch (position) {
                             case (0):
+                                /*
+                                * CHANGE PASSWORD
+                                *
+                                * starts lockscreenactivity, and waits for result (1).
+                                * It is only looking for a confirmation of the current password, before allowing the user to change.
+                                *
+                                * Will only run if a password has been set. otherwise displays a toast.
+                                */
+
                                 if (PasswordHelper.isPwSet(AppSettingsActivity.this)) {
 
                                     i = new Intent(AppSettingsActivity.this, LockScreenActivity.class);
@@ -72,6 +88,14 @@ public class AppSettingsActivity extends Activity {
                                 }
                                 break;
                             case (1):
+                                /*
+                                * ENABLE/DISABLE Password
+                                * Enable, starts the service that activates the lockscreenactivity when the device is locked.
+                                * Disable, requests a password confirmation, then on success closes the service.
+                                *
+                                * Waiting for response code: 2
+                                */
+
                                 if (PasswordHelper.isPwSet(AppSettingsActivity.this)) {
                                     if (LockListenerService.isRunning() && PasswordHelper.isPwSet(AppSettingsActivity.this)) {
 
@@ -80,7 +104,6 @@ public class AppSettingsActivity extends Activity {
                                         i.putExtra(getString(R.string.actionBar), getString(R.string.disable_Lockscreen));
 
                                         setEnableDisableView(view);
-
                                         AppSettingsActivity.this.startActivityForResult(i, 2);
 
 
@@ -95,6 +118,9 @@ public class AppSettingsActivity extends Activity {
                                 break;
 
                             case (2):
+                                /*
+                                * This option (if password is set) opens the lockscreenactivity and allows the user to practice / test their created password.
+                                 */
                                 if (PasswordHelper.isPwSet(AppSettingsActivity.this)) {
                                     i = new Intent(AppSettingsActivity.this, LockScreenActivity.class);
                                     i.putExtra(getString(R.string.actionBar), getString(R.string.testTitle));
@@ -105,6 +131,11 @@ public class AppSettingsActivity extends Activity {
                                 }
                                 break;
                             case (3):
+
+                                /*
+                                * This option only appears the first time, and if the user hasn't created a password, and allows the user to create their first password.
+                                * If the user has already created a password but hasn't closed the app yet, it creates a toast saying the password is already created.
+                                 */
 
                                 if(!PasswordHelper.isPwSet(AppSettingsActivity.this)) {
                                     i = new Intent(AppSettingsActivity.this, LockScreenActivity.class);
@@ -122,10 +153,6 @@ public class AppSettingsActivity extends Activity {
                     }
                 });
 
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        //client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -133,6 +160,11 @@ public class AppSettingsActivity extends Activity {
 
         System.out.println("RESULT");
         if (requestCode == 1) {
+            /*
+            * Result from change password. Checks if the password is correct by checking the boolean value of R.string.checkPw_confirm
+            *
+            * if correct it reactivates LockScreenActivity, however sends the flag to change the password.
+             */
             if (resultCode == Activity.RESULT_OK) {
                 boolean result = data.getBooleanExtra(this.getString(R.string.checkPw_confirm), false);
                 if (result) {
@@ -144,6 +176,9 @@ public class AppSettingsActivity extends Activity {
             }
         }
         else if(requestCode == 2)  {
+            /*
+            * Enable/Disable password uses request code 2. This is the confirmation of the disabling of the lockscreen.
+             */
             if(resultCode == Activity.RESULT_OK)  {
                 boolean result = data.getBooleanExtra(this.getString(R.string.checkPw_confirm), false);
 
@@ -162,59 +197,14 @@ public class AppSettingsActivity extends Activity {
 
         }
         else {
+            //TESTING. If any other request code somehow gets returned.
             System.out.println("ERROR MAYBE -> REQUEST CODE: " + requestCode);
         }
     }
 
+    //used with the enable/disable view.
     private void setEnableDisableView(View view)  {
         enableDisableView = view;
     }
 
-
-    private void resetActivity(boolean fin)  {
-        overridePendingTransition( 0, 0);
-        startActivity(getIntent());
-        overridePendingTransition( 0, 0);
-        if(fin)  {
-            finish();
-        }
-
-
-    }
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    /*public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("AppSettings Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
-    }*/
 }

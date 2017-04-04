@@ -13,15 +13,13 @@ import java.io.IOException;
 
 import static android.os.ParcelFileDescriptor.MODE_WRITE_ONLY;
 
-/**
- * Created by Islarf on 23/12/2016.
- */
+/*
+* Author: Darren Bellew
+*
+* This class provides interaction with a json file (filename given via constructior).
+*/
 
 public class JSON_Helper {
-
-    /*
-        JSONHelper class to interact with the JSON file.
-     */
 
 
 
@@ -32,11 +30,12 @@ public class JSON_Helper {
 
 
     public JSONObject loadJSON(Context ctx) throws JSONException {
-
+        /*
+        * This method loads the json file, and returns the content in a JSONObject
+        */
 
         JSONObject json = null;
 
-        //having to read from LOCAL storage (Not using external storage incase the user does not have an SD card)
         try  {
             FileInputStream fin = ctx.openFileInput(filename);
 
@@ -61,12 +60,18 @@ public class JSON_Helper {
 
     public boolean writeJSON(JSONObject json_data, Context ctx)  {
 
+        /*
+        * This method writes the JSONObject sent to it to the json file (filename).
+        * It returns a boolean on success/failure.
+        */
+
         try {
             FileOutputStream fos = ctx.openFileOutput(filename, MODE_WRITE_ONLY);
 
             String str = json_data.toString();
             fos.write(str.getBytes());
             fos.close();
+            return true;
 
         }
         catch(FileNotFoundException fnf)  {
@@ -75,8 +80,6 @@ public class JSON_Helper {
         catch(IOException ioe)  {
             ioe.printStackTrace();
         }
-
-        System.out.println("PATH: " + ctx.getFilesDir().getAbsolutePath());
 
         return false;
     }

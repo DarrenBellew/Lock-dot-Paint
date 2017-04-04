@@ -1,7 +1,10 @@
 package com.islarf6546.gmail.lock_prototype_1;
 
-/**
- * Created by Islarf on 22/01/2017.
+/*
+* Author: Darren Bellew
+*
+* This class is for Coordinates. holds 2 integers, an x and a y value.
+* Also has a funtion to round the coordinates to the neares 100.
  */
 
 public class Coordinate {

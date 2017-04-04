@@ -1,13 +1,18 @@
 package com.islarf6546.gmail.lock_prototype_1;
 
-import android.app.KeyguardManager;
 import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
-import android.view.WindowManager;
+
+/*
+* Author: Darren Bellew
+*
+* This class is a Service which initialises a receiver that listens for when the phone is locked.
+* The class then initialises LockScreenActivity
+*/
+
 
 public class LockListenerService extends Service {
 
@@ -16,18 +21,20 @@ public class LockListenerService extends Service {
 
     public static boolean isRunning = false;
 
-    //public LockListenerService() {}
-
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
         return null;
-
-        //throw new UnsupportedOperationException("Not yet implemented");
     }
+
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)  {
+        /*
+        * This method is ran when the service starts.
+        * It sets a isrunning flag, and registers the receiver to listen for Action Screen Off
+        */
+
         isRunning = true;
 
         super.onStartCommand(intent, flags, startId);
@@ -44,7 +51,10 @@ public class LockListenerService extends Service {
 
     @Override
     public void onDestroy()  {
-        //TODO: Auto-generated method stub
+        /*
+        * This method activates when the service is destroyed.
+        * It unregisteres the receiver and sets the isrunning to false.
+        */
         unregisterReceiver(receiver);
 
         isRunning = false;

@@ -9,13 +9,21 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
+/*
+* Author: Darren Bellew
+*
+* This class is the activity that acts as the lock screen for the device.
+* The class has ifs that check the intent that called it, to do slightly different things, depending.
+*/
+
 public class LockScreenActivity extends Activity {
 
-    int attempts;
     String actionBarTitle;
     private static boolean running = false;
 
-
+    /*
+    * These next two functions run on start and on stop of the activity. they set a static boolean to be checked by outside classes.
+    */
     @Override
     public void onStart()  {
         running = true;
@@ -31,6 +39,7 @@ public class LockScreenActivity extends Activity {
         return running;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
@@ -38,6 +47,8 @@ public class LockScreenActivity extends Activity {
 
 
         setContentView(R.layout.lock_screen_activity);
+
+        //This intent is used to check get the action bar title, and what functionality the sub/create button will be doing.
         final Intent i = getIntent();
 
         //Gets display (screen) size to calculate an area of freedom
@@ -54,16 +65,16 @@ public class LockScreenActivity extends Activity {
         final Button sub = (Button) findViewById(R.id.submit_button);
         final Button create = (Button) findViewById(R.id.create_button);
 
-
-        //PasswordHelper.displayPw(this);
-
-        resetAttempts();
-
         actionBarTitle = i.getStringExtra(getString(R.string.actionBar));
         changeTitle(actionBarTitle);
 
-
+        /*
+        * Collection of if statements to decide which to use and what to do with the submit or create button.
+         */
         if(i.getBooleanExtra(getString(R.string.change_pw), false)) {
+            /*
+            * If the intent is set to change password.
+            */
             create.setVisibility(View.VISIBLE);
 
             create.setOnClickListener(
@@ -78,6 +89,9 @@ public class LockScreenActivity extends Activity {
             );
         }
         else if (i.getBooleanExtra(getString(R.string.checkPw), false)) {
+            /*
+            * If the intent is set to check password.
+            */
             sub.setVisibility(View.VISIBLE);
 
             sub.setOnClickListener(
@@ -102,10 +116,10 @@ public class LockScreenActivity extends Activity {
 
         }
         else  {
-            if(!i.getBooleanExtra(this.getString(R.string.testTitle), false))  {
-                actionBarTitle = getString(R.string.attemptTitle);
-                getActionBar().setTitle(actionBarTitle + attempts);
-            }
+            /*
+            * If else, it simply just asked for the user to enter their password and kills the activity when the user is correct.
+            */
+            changeTitle(getString(R.string.enter_pw));
             sub.setVisibility(View.VISIBLE);
             sub.setOnClickListener(
                     new View.OnClickListener() {
@@ -116,8 +130,6 @@ public class LockScreenActivity extends Activity {
                                 killActivity();
                             }
                             else  {
-                                incorrectAttempt();
-                                getActionBar().setTitle(actionBarTitle + attempts);
                                 AndroidHelper.makeToast(LockScreenActivity.this,"try again",false);
                             }
                         }
@@ -126,8 +138,9 @@ public class LockScreenActivity extends Activity {
 
         }
 
-        System.out.println("I made it here");
-
+        /*
+        * Button to clear the Canvas
+        */
         Button clear = (Button) findViewById(R.id.clear_button);
         clear.setOnClickListener(
                 new View.OnClickListener() {
@@ -141,7 +154,6 @@ public class LockScreenActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.activity_write_on_screen, menu);
         return true;
     }
 
@@ -149,13 +161,6 @@ public class LockScreenActivity extends Activity {
         finish();
     }
 
-    private void incorrectAttempt()  {
-        attempts -= 1;
-    }
-
-    private void resetAttempts()  {
-        attempts = Integer.parseInt(getString(R.string.attempts));
-    }
 
     private void changeTitle(String title)  {
         getActionBar().setTitle(title);
