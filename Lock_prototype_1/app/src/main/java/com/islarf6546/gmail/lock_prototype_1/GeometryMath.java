@@ -8,6 +8,8 @@ import static java.security.AccessController.getContext;
 * Author: Darren Bellew
 *
 * This class provides static functions that will execute geometry related mathematics and return a result.
+*
+*
 */
 
 public class GeometryMath {
@@ -43,6 +45,8 @@ public class GeometryMath {
     public static double totalDistance(Coordinate x, Coordinate y)  {
         /*
         * Gets the distance between two coordinates and returns the result as a double.
+        *
+        * Uses the distance between two coordinates formula:  sqrt( (x2 - x1)^2 + (y2 - y1)^2 )
         */
         double distance = Math.sqrt(
                 Math.pow(y.getX() - x.getX(), 2)
@@ -80,8 +84,9 @@ public class GeometryMath {
 
     public static Coordinate findSmallest(ArrayList<Stroke> toTranslate)  {
         /*
-        * Finds the smallest x and y values in a list of strokes.
-         */
+        * Finds the smallest x and y values in a list of strokes and returns the result as a Coordinate.
+        */
+
         Coordinate toRet;
         int y = Integer.MAX_VALUE;
         int x = Integer.MAX_VALUE;

@@ -8,15 +8,19 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-/**
- * Created by islarf on 28/02/17.
- */
+/*
+* Author: Darren Bellew
+*
+* This class contains static methods which help with the password.
+* such as storing, is the pw set and comparing the password.
+*
+* Basic json tutorial: https://www.tutorialspoint.com/android/android_json_parser.htm
+* Most was discovered through auto-complete provided with AndroidStudio
+*
+*/
 
 public class PasswordHelper {
 
-    /*
-        This class is just a helper class with a collection of static methods to store new and compare passwords
-     */
 
 
 
@@ -27,7 +31,9 @@ public class PasswordHelper {
 
 
     public static void storeNew(ArrayList<Stroke> strokes, Context ctx)  {
-
+        /*
+        * This method creates the JSON to store as the new password; stored in strokes.
+        */
         initTags(ctx);
 
         JSON_Helper jhelp = new JSON_Helper(filename);
@@ -37,11 +43,12 @@ public class PasswordHelper {
         try {
             for(Stroke stroke : strokes) {
                 JSONArray subArr = new JSONArray();
-                JSONObject subObj = new JSONObject();
 
+                JSONObject subObj = new JSONObject();
                 subObj.put("x", stroke.getStart().getX());
                 subObj.put("y", stroke.getStart().getY());
                 subArr.put(subObj);
+
                 subObj = new JSONObject();
                 subObj.put("x", stroke.getEnd().getX());
                 subObj.put("y", stroke.getEnd().getY());
@@ -59,6 +66,10 @@ public class PasswordHelper {
     }
 
     public static void displayPw(Context ctx)  {
+        /*
+        * A testing method used to display the current stored password via Toast.
+        */
+
         initTags(ctx);
 
         JSON_Helper jhelp = new JSON_Helper(filename);
@@ -75,6 +86,10 @@ public class PasswordHelper {
     }
 
     public static boolean isPwSet(Context ctx)  {
+        /*
+        * A method that checks if a password is set; if set returns a boolean true, otherwise false.
+        */
+
         initTags(ctx);
 
         JSON_Helper jhelp = new JSON_Helper(filename);
@@ -97,6 +112,10 @@ public class PasswordHelper {
     }
 
     public static boolean comparePw(ArrayList<Stroke> input, int freedom, Context ctx)  {
+        /*
+        * A method that compares the inputted password (input) with the stored password which it gets from the stores json file.
+        * It compares the password by using GeometryMath.isCorrect().
+        */
         initTags(ctx);
 
         ArrayList<Stroke> storepw = new ArrayList<Stroke>();
@@ -129,29 +148,12 @@ public class PasswordHelper {
     }
 
     private static void initTags(Context ctx)  {
+        /*
+        * Initialise static values by getting the values from strings.xml.
+        */
         filename = ctx.getString(R.string.filename);
         passwordTag = ctx.getString(R.string.pwTag);
         lengthTag = ctx.getString(R.string.lengthTag);
     }
 
-
-    //TESTING ONLY
-    public static void resetPassword(Context ctx)  {
-        initTags(ctx);
-
-        JSON_Helper jhelp = new JSON_Helper(filename);
-        JSONObject jsonpw = new JSONObject();
-
-        try {
-            jsonpw = jhelp.loadJSON(ctx);
-            jsonpw.put(passwordTag, "");
-            jsonpw.put(lengthTag, "");
-        }
-        catch(JSONException jse)  {
-            jse.printStackTrace();
-        }
-
-        jhelp.writeJSON(jsonpw, ctx);
-
-    }
 }

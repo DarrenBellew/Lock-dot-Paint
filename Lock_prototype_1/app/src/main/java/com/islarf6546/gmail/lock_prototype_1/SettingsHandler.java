@@ -4,9 +4,11 @@ import android.content.Context;
 
 import java.util.ArrayList;
 
-/**
- * Created by islarf on 04/03/17.
- */
+/*
+* Author: Darren Bellew
+*
+* This class gets the strings to be used on the settings screen from strings.xml and returns it in an ArrayList<String>.
+*/
 
 public class SettingsHandler {
 
@@ -15,6 +17,8 @@ public class SettingsHandler {
 
         ArrayList<String> options = new ArrayList<>();
         options.add(ctx.getString(R.string.changePwOpt));
+
+        //Disable or Enable depending on if the service is currently running.
         if(serviceRunning)  {
             options.add(ctx.getString(R.string.disablePwOpt));
         }
@@ -23,6 +27,7 @@ public class SettingsHandler {
         }
         options.add(ctx.getString(R.string.testPwOpt));
 
+        //this should only appear on the initial launch of the application; or if the password isn't set yet.
         if(!PasswordHelper.isPwSet(ctx)) {
             options.add(ctx.getString(R.string.createPwOpt));
         }

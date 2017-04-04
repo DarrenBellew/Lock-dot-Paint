@@ -21,7 +21,9 @@ import static android.R.color.white;
 *
 * The base functionality of this class, is abstracted and changed from that displayed in this youtube video: https://www.youtube.com/watch?v=fRtytvw3yvY
 *
+* MotionEvent: https://developer.android.com/reference/android/view/MotionEvent.html
 */
+
 public class DrawView extends View {
 
     private Paint paint = new Paint();

@@ -10,7 +10,15 @@ import android.util.Log;
 * Author: Darren Bellew
 *
 * This class is a Service which initialises a receiver that listens for when the phone is locked.
-* The class then initialises LockScreenActivity
+* The class then initialises LockScreenActivity.
+*
+* Forum post to get the service/lock screen working: https://www.reddit.com/r/learnprogramming/comments/2ccmi6/androidtutorial_simple_lockscreen_tutorial/
+*
+*   Some alteration with the forum post had to be made because of deprecated code.
+*
+* Android services documentation: https://developer.android.com/guide/components/services.html
+*
+*
 */
 
 

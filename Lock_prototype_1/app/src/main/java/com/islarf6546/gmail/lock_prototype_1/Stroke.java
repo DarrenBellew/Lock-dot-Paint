@@ -1,10 +1,12 @@
 package com.islarf6546.gmail.lock_prototype_1;
 
-import java.util.ArrayList;
 
-/**
- * Created by Islarf on 23/01/2017.
- */
+/*
+* Author: Darren Bellew
+*
+* This class holds two coordinates, which are the starting and ending to a stroke.
+* It is used by the DrawView class.
+*/
 
 public class Stroke {
 

@@ -17,6 +17,11 @@ import static android.os.ParcelFileDescriptor.MODE_WRITE_ONLY;
 * Author: Darren Bellew
 *
 * This class provides interaction with a json file (filename given via constructior).
+*
+* Reading JSON: http://stackoverflow.com/questions/13814503/reading-a-json-file-in-android
+* Writing JSON:
+*   FileOutputStream: https://developer.android.com/reference/java/io/FileOutputStream.html
+*
 */
 
 public class JSON_Helper {

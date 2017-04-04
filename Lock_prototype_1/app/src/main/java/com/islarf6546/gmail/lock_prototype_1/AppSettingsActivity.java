@@ -25,26 +25,27 @@ import java.util.ArrayList;
 *
 * The buttons are accessed through a switch/case for their position on the settings screen.
 * The settings text is retrieved into a String arraylist from SettingsHandler which reads the strings from strings.xml.
- */
+*
+*
+* ListView tutorial used: https://www.youtube.com/watch?v=rhj4_KBD6BQ
+* List view documentation: https://developer.android.com/guide/topics/ui/layout/listview.html
+*
+* Intents documentation: https://developer.android.com/guide/components/intents-filters.html
+* onActivityResult tutorial: http://stackoverflow.com/questions/920306/sending-data-back-to-the-main-activity-in-android
+*/
 
 
 public class AppSettingsActivity extends Activity {
 
-
-
-
     View enableDisableView;
     ArrayList<String> settings;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         this.getActionBar().setTitle(R.string.settingsScreen);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_settings);
-
-        /*
-        * The options for the list are gotten from SettingsHandler
-        */
 
 
         settings = SettingsHandler.getOptions(this, LockListenerService.isRunning());
@@ -57,13 +58,14 @@ public class AppSettingsActivity extends Activity {
 
         settingsList.setAdapter(theAdapter);
 
-
+        //when an item is clicked, this gets called.
         settingsList.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
                         Intent i;
+                        //a switch to go through the positions on the settings list. (Order is important).
                         switch (position) {
                             case (0):
                                 /*
@@ -197,7 +199,7 @@ public class AppSettingsActivity extends Activity {
 
         }
         else {
-            //TESTING. If any other request code somehow gets returned.
+            //TESTING || If any other request code somehow gets returned.
             System.out.println("ERROR MAYBE -> REQUEST CODE: " + requestCode);
         }
     }

@@ -10,6 +10,8 @@ import android.widget.Toast;
  * Author: Darren Bellew
  *
  * This class contains (a) static function to make executing basic android functions easier.
+ *
+ * Toast documentation: https://developer.android.com/guide/topics/ui/notifiers/toasts.html
  */
 
 public class AndroidHelper {
