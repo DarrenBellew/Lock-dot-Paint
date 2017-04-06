@@ -55,7 +55,6 @@ public class AppSettingsActivity extends Activity {
 
         final ListView settingsList = (ListView) findViewById(R.id.settingsListView);
 
-
         settingsList.setAdapter(theAdapter);
 
         //when an item is clicked, this gets called.

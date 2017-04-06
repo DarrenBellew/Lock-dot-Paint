@@ -147,6 +147,25 @@ public class PasswordHelper {
         }
     }
 
+    //TESTING ONLY
+    public static void resetPassword(Context ctx)  {
+        initTags(ctx);
+        JSON_Helper jhelp = new JSON_Helper(filename);
+        JSONObject jsonpw = new JSONObject();
+
+        try {
+            jsonpw = jhelp.loadJSON(ctx);
+            jsonpw.put(passwordTag, "");
+            jsonpw.put(lengthTag, "");
+        }
+        catch(JSONException jse)  {
+            jse.printStackTrace();
+        }
+
+        jhelp.writeJSON(jsonpw, ctx);
+
+    }
+
     private static void initTags(Context ctx)  {
         /*
         * Initialise static values by getting the values from strings.xml.
